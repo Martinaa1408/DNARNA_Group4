@@ -57,54 +57,60 @@ This project involves the analysis of DNA methylation data using the Illumina In
 - Use `preprocessRaw()` to convert RGset into MSet.raw
 
 ### 4. Quality Control
-- `plotQC()`, `controlStripPlot()`  
-- Detection p-values and table of failed probes
+- Use `plotQC()`, `controlStripPlot()`  
+- Calculate detection p-values and count failed probes
 
 ### 5. Beta and M Values
-- Calculate and compare beta and M values for WT and MUT  
-- Density plots for raw values
+- Calculate and compare raw beta and M values for WT and MUT  
+- Plot density distributions
 
 ### 6. Normalization
-- Use `preprocessFunnorm()`  
-- Visualize changes via 6-panel plots and boxplots
+- Apply `preprocessFunnorm()`  
+- Compare raw vs normalized data using 6-panel plot and boxplots
 
 ### 7. PCA Analysis
-- Perform PCA on normalized beta matrix  
-- Plot by group, sex, and batch
+- Perform PCA on normalized data  
+- Plot clustering by group, sex, and batch
 
 ### 8. Differential Methylation Analysis
-- t-test per probe + BH/Bonferroni correction  
-- Histogram, volcano and Manhattan plots
+- t-test per probe, p-value correction (BH and Bonferroni)  
+- Visualize with histogram, volcano plot, and Manhattan plot
 
 ### 9. Heatmap
-- Top 100 most significant probes
+- Plot top 100 most significant differentially methylated probes
 
 ---
 
 ## Motivation and Rationale
 
-This pipeline follows best practices for methylation microarray analysis:
-- **QC** ensures sample quality
-- **Funnorm** adjusts for probe-type and technical biases
-- **Differential analysis** uncovers methylation changes linked to biological conditions
+This pipeline follows best practices in methylation data analysis:
+- Ensures **quality control** through detection p-values and QC plots
+- Applies **Funnorm normalization**, which adjusts for Type I/II probe differences and technical variation
+- Performs **statistical testing** to detect biologically relevant methylation changes
 
-The choice of `preprocessFunnorm` is optimal for this dataset as it corrects known biases while preserving biological signal.
+The `preprocessFunnorm` function is particularly well suited for correcting bias without eliminating biological signal in heterogeneous datasets like ours.
 
 ---
 
 ## Outputs and Deliverables
 
-- Annotated `.R` script  
-- Red/Green intensity table for probe `44666390`  
-- All plots (6-panel, PCA, volcano, Manhattan, heatmap)  
-- Summary of differentially methylated probes before and after correction  
+- Commented R script (`pipeline_group4.R`)
+- Table with fluorescence intensities for probe `44666390`
+- Quality control metrics and visualizations
+- 6-panel comparison plots (raw vs normalized)
+- PCA plots grouped by biological variables
+- Volcano and Manhattan plots of differential analysis
+- Heatmap of top 100 probes
+- Summary tables for differentially methylated probes (raw, BH, Bonferroni)
 
 ---
 
 ## Academic Context
 
-This project was developed as part of the **DNA/RNA course – Module 2** (**Prof. Francesco Ravaioli**) of the MSc in Bioinformatics at the **University of Bologna**.  
-It applies statistical and computational methods to analyze DNA methylation microarray data using real experimental data.
+This project was developed within the course **DNA/RNA dynamics (Module 2, Prof Ravaioli)** of the MSc in **Bioinformatics** at the **University of Bologna**.
+
+The aim of the course is to provide hands-on experience with the analysis of DNA methylation and gene expression using real experimental datasets and R/Bioconductor tools.
 
 ---
-> This README explains our methodology and decisions, guiding the project development and report writing.
+
+> This README provides the methodological foundation for our group project and supports the creation of the final report and codebase.
