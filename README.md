@@ -1,7 +1,7 @@
 # Group 4 - DNA Methylation Analysis Project
 
 
-## 📑 Table of Contents
+## Table of Contents
 - [Project Overview](#-project-overview)
 - [Assigned Parameters](#-assigned-parameters)
 - [Tools and Technologies](#-tools-and-technologies)
