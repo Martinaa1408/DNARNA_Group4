@@ -1,5 +1,16 @@
 # Group 4 - DNA Methylation Analysis Project
 
+## 📑 Table of Contents
+- [Project Overview](#-project-overview)
+- [Assigned Parameters](#-assigned-parameters)
+- [Tools and Technologies](#-tools-and-technologies)
+- [Workflow Summary](#-workflow-summary)
+- [Motivation and Rationale](#-motivation-and-rationale)
+- [Outputs and Deliverables](#-outputs-and-deliverables)
+- [Academic Context](#-academic-context)
+
+---
+
 ## Project Overview
 This project involves the analysis of DNA methylation data using the Illumina Infinium BeadChip microarray platform. Our aim is to investigate potential epigenetic differences between wild-type (WT) and mutant (MUT) samples through a complete preprocessing, quality control, normalization, and statistical analysis pipeline.
 
@@ -87,4 +98,12 @@ The choice of `preprocessFunnorm` is optimal for this dataset as it corrects kno
 - All plots (6-panel, PCA, volcano, Manhattan, heatmap)  
 - Summary of differentially methylated probes before and after correction  
 
+---
+
+## Academic Context
+
+This project was developed as part of the **DNA/RNA course – Module 2** (**Prof. Francesco Ravaioli**) of the MSc in Bioinformatics at the **University of Bologna**.  
+It applies statistical and computational methods to analyze DNA methylation microarray data using real experimental data.
+
+---
 > This README explains our methodology and decisions, guiding the project development and report writing.
