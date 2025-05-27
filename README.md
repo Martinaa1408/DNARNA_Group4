@@ -50,7 +50,7 @@ Fluorescence detection:
 - Green fluorescence → indicates methylated cytosines
 - Red fluorescence → indicates unmethylated cytosines
 
-![Infinium I and II chemistries](https://raw.githubusercontent.com/Martinaa1408/DNARNA_Group4/main/figures/infinium_scheme.png)
+![Infinium I and II chemistries]((https://github.com/Martinaa1408/DNARNA_Group4/blob/main/figures/infinium_scheme.png))
 
 The methylation level is calculated using:
 
