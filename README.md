@@ -55,6 +55,13 @@ Our goal is to investigate potential **epigenetic differences** between **wild-t
 
 ## Data Structure
 
+Processed object (`RGset.RData`) available for direct download:
+
+📁 [Download RGset.RData from Google Drive](https://drive.google.com/uc?export=download&id=1eIU1pHnwIDmMTmn73Zu3RdZgdcb_ZFux)
+
+> All data paths are referenced programmatically in the pipeline to ensure reproducibility.
+> The `.RData` file is not stored in this repository due to GitHub file size limitations.
+
 
 > All paths are referenced programmatically in the pipeline to ensure reproducibility.
 
