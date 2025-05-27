@@ -12,15 +12,10 @@
 
 ---
 
-## 📌 Project Overview
+## 🧬 Project Overview
 
 This project involves the analysis of DNA methylation data generated using the **Illumina Infinium HumanMethylation450K BeadChip** platform.  
-Our goal is to investigate potential **epigenetic differences** between **wild-type (WT)** and **mutant (MUT)** samples through a complete pipeline including:
-
-- Data preprocessing  
-- Quality control  
-- Functional normalization  
-- Statistical analysis and visualization  
+Our goal is to investigate potential **epigenetic differences** between **wild-type (WT)** and **mutant (MUT)** samples through a complete pipeline including preprocessing, quality control, normalization, and statistical analysis.
 
 ---
 
@@ -40,10 +35,10 @@ Our goal is to investigate potential **epigenetic differences** between **wild-t
 
 | Parameter                 | Value          |
 |---------------------------|----------------|
-| Group ID                  | 4              |
-| Assigned Probe Address    | 44666390       |
-| Detection p-value cutoff  | 0.01           |
-| Normalization Method      | `preprocessFunnorm` |
+| **Group ID**              | 4              |
+| **Assigned Probe**        | 44666390       |
+| **Detection p-value**     | 0.01           |
+| **Normalization method**  | `preprocessFunnorm` |
 
 ---
 
@@ -51,78 +46,77 @@ Our goal is to investigate potential **epigenetic differences** between **wild-t
 
 - **Language**: R  
 - **Platform**: Illumina HumanMethylation450K BeadChip  
-- **Key packages**:  
-  - `minfi`  
-  - `BiocManager`  
-  - `ggplot2`  
-  - `factoextra`  
-  - `gplots`  
-  - `qqman`  
+- **Key Packages**:  
+  - `minfi`, `BiocManager`, `ggplot2`  
+  - `gplots`, `factoextra`, `qqman`  
 
-> 📁 **Input Data**: IDAT files and `SampleSheet.csv` are stored in the `input_data/` directory.
+### 📁 Data Structure
+
+
+> All paths are referenced programmatically in the pipeline to ensure reproducibility.
 
 ---
 
 ## 🔬 Workflow Summary
 
 1. **Data Import**  
-   Load IDAT files using `read.metharray.exp()` and generate the `RGset` object.
+   Load `.idat` files from `raw_data/idat/` using `read.metharray.exp()` and create an `RGset` object.
 
 2. **Fluorescence Extraction**  
-   Extract red and green channel signals for probe `44666390` and determine the probe type.
+   Extract red and green signals for probe `44666390` and determine probe type (Infinium I/II).
 
 3. **Create MSet.raw**  
-   Use `preprocessRaw()` to compute raw β-values and M-values.
+   Convert RGset to MSet using `preprocessRaw()` to compute raw β-values and M-values.
 
 4. **Quality Control**  
-   Visualize QC metrics with `plotQC()` and `controlStripPlot()`, calculate detection p-values, and count failed probes.
+   Visualize QC metrics (`plotQC()`, `controlStripPlot()`), compute detection p-values, and flag failed probes.
 
 5. **Beta and M Values**  
-   Compare raw β-values and M-values between WT and MUT groups; plot density distributions.
+   Compare raw methylation levels across WT and MUT; visualize with density plots.
 
 6. **Normalization**  
-   Apply `preprocessFunnorm()` and compare raw vs normalized values using 6-panel plots and boxplots.
+   Apply `preprocessFunnorm()` and compare pre- and post-normalization with 6-panel plots and boxplots.
 
 7. **PCA Analysis**  
-   Perform PCA on normalized data and plot sample clustering by group, sex, and batch.
+   Run PCA on normalized β-values and visualize sample clustering by group, sex, and batch.
 
 8. **Differential Methylation Analysis**  
-   Apply a t-test per probe, correct p-values using Benjamini-Hochberg and Bonferroni methods, and visualize results using histograms, volcano plots, and Manhattan plots.
+   Perform t-tests per probe, apply BH and Bonferroni correction, visualize results with volcano and Manhattan plots.
 
 9. **Heatmap**  
-   Visualize the top 100 most significant differentially methylated probes with hierarchical clustering.
+   Plot top 100 differentially methylated probes using hierarchical clustering.
 
 ---
 
 ## 🧠 Motivation and Rationale
 
-This pipeline follows best practices in methylation data analysis:
+This pipeline follows best practices in methylation analysis:
 
-- Ensures data reliability through detection p-values and QC plots  
-- Applies functional normalization (`preprocessFunnorm`) to correct for probe design bias and technical variation  
-- Performs rigorous statistical testing to identify biologically meaningful methylation changes  
+- Ensures rigorous **quality control** through detection p-values and control plots  
+- Applies **functional normalization** to correct probe type bias and reduce technical variability  
+- Enables robust **statistical detection** of biologically meaningful methylation changes  
 
-The use of `preprocessFunnorm` is particularly suited for heterogeneous datasets, as it corrects technical biases without removing biological signal.
+`preprocessFunnorm` is particularly suitable for heterogeneous datasets like ours, balancing bias correction and signal preservation.
 
 ---
 
 ## 📤 Outputs and Deliverables
 
-- ✅ Commented R script (`pipeline_group4.R`)  
+- ✅ Full analysis script: `pipeline_group4.R`  
 - ✅ Fluorescence intensity table for probe `44666390`  
-- ✅ Quality control plots and detection p-value statistics  
-- ✅ Raw vs normalized β-values comparison plots  
-- ✅ PCA plots grouped by biological variables  
-- ✅ Volcano and Manhattan plots from DMP analysis  
-- ✅ Heatmap of the top 100 DMPs  
-- ✅ Summary tables with raw, BH-adjusted, and Bonferroni p-values  
+- ✅ Quality control metrics and detection statistics  
+- ✅ Normalized vs raw beta-value comparisons  
+- ✅ PCA plots grouped by sample metadata  
+- ✅ Volcano and Manhattan plots for DMPs  
+- ✅ Heatmap of top 100 DMPs  
+- ✅ Summary tables: raw p-values, BH, Bonferroni
 
 ---
 
 ## 🎓 Academic Context
 
-This project was developed within the course **DNA/RNA Dynamics (Module 2)**, taught by **Prof. Ravaioli**, as part of the **MSc in Bioinformatics** at the **University of Bologna**.
+This project was developed within the course **DNA/RNA Dynamics (Module 2, Prof. Ravaioli)** of the **MSc in Bioinformatics** at the **University of Bologna**.
 
-The course provides hands-on experience in the analysis of DNA methylation and gene expression using real experimental datasets and **R/Bioconductor** tools.  
-This README serves as a methodological reference for the project and supports the development of the final report and analysis scripts.
+> _This README serves as the methodological reference for our group project and supports the creation of the final report and reproducible codebase._
+
 
