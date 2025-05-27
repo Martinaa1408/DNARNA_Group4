@@ -50,6 +50,7 @@ Fluorescence detection:
 - Green fluorescence → indicates methylated cytosines
 - Red fluorescence → indicates unmethylated cytosines
 
+![Infinium I and II chemistries](https://raw.githubusercontent.com/Martinaa1408/DNARNA_Group4/main/figures/infinium_scheme.png)
 
 The methylation level is calculated using:
 
@@ -85,8 +86,8 @@ The methylation level is calculated using:
 /scripts/ → pipeline_group4.R
 /output/ → figures, tables, PCA, volcano, heatmap
 
-📥 **Download RGset.RData** (processed methylation object):  
-🔗 https://drive.google.com/uc?export=download&id=1eIU1pHnwIDmMTmn73Zu3RdZgdcb_ZFux
+**Download RGset.RData** (processed methylation object):  
+https://drive.google.com/uc?export=download&id=1eIU1pHnwIDmMTmn73Zu3RdZgdcb_ZFux
 
 ---
 
