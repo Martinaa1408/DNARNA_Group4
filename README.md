@@ -1,6 +1,6 @@
-# 🧬 Group 4 – DNA Methylation Analysis Project
+# Group 4 – DNA Methylation Analysis Project
 
-## 📑 Table of Contents
+## Table of Contents
 - [Project Overview](#project-overview)
 - [Group Members](#group-members)
 - [Assigned Parameters](#assigned-parameters)
@@ -70,7 +70,7 @@ Processed object (`RGset.RData`) available for direct download:
 ## 🔬 Workflow Summary
 
 1. **Data Import**  
-   Load `.idat` files from `raw_data/idat/` using `read.metharray.exp()` and create an `RGset` object.
+   Load `.idat` files from `Input_data/idat/` using `read.metharray.exp()` and create an `RGset` object.
 
 2. **Fluorescence Extraction**  
    Extract red and green signals for probe `44666390` and determine probe type (Infinium I/II).
@@ -98,7 +98,7 @@ Processed object (`RGset.RData`) available for direct download:
 
 ---
 
-## 🧠 Motivation and Rationale
+## Motivation and Rationale
 
 This pipeline follows best practices in methylation analysis:
 
@@ -123,7 +123,7 @@ This pipeline follows best practices in methylation analysis:
 
 ---
 
-## 🎓 Academic Context
+## Academic Context
 
 This project was developed within the course **DNA/RNA Dynamics (Module 2, Prof. Ravaioli)** of the **MSc in Bioinformatics** at the **University of Bologna**.
 
