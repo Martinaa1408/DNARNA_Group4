@@ -84,7 +84,9 @@ The methylation level is calculated using:
 ## Input Data Structure
 
 /Input_data/ → .idat files (Red and Green channels) and SampleSheet.csv
+
 /scripts/ → pipeline_group4.R
+
 /output/ → figures, tables, PCA, volcano, heatmap
 
 **Download RGset.RData** (processed methylation object):  
