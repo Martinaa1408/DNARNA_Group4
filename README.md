@@ -5,11 +5,12 @@
 - [Group Members](#group-members)
 - [Assigned Parameters](#assigned-parameters)
 - [Tools and Technologies](#tools-and-technologies)
+- [Data Structure](#data-structure)
 - [Workflow Summary](#workflow-summary)
 - [Motivation and Rationale](#motivation-and-rationale)
 - [Outputs and Deliverables](#outputs-and-deliverables)
 - [Academic Context](#academic-context)
-
+  
 ---
 
 ## 🧬 Project Overview
