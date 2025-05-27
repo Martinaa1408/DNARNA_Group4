@@ -10,17 +10,17 @@
 - [Motivation and Rationale](#motivation-and-rationale)
 - [Outputs and Deliverables](#outputs-and-deliverables)
 - [Academic Context](#academic-context)
-  
+
 ---
 
-## 🧬 Project Overview
+## Project Overview
 
 This project involves the analysis of DNA methylation data generated using the **Illumina Infinium HumanMethylation450K BeadChip** platform.  
 Our goal is to investigate potential **epigenetic differences** between **wild-type (WT)** and **mutant (MUT)** samples through a complete pipeline including preprocessing, quality control, normalization, and statistical analysis.
 
 ---
 
-## 👥 Group Members
+## Group Members
 
 - Andrea Pusiol  
 - Aurora Mazzoni  
@@ -32,7 +32,7 @@ Our goal is to investigate potential **epigenetic differences** between **wild-t
 
 ---
 
-## 📋 Assigned Parameters
+## Assigned Parameters
 
 | Parameter                 | Value          |
 |---------------------------|----------------|
@@ -43,15 +43,17 @@ Our goal is to investigate potential **epigenetic differences** between **wild-t
 
 ---
 
-## 🛠️ Tools and Technologies
+## Tools and Technologies
 
 - **Language**: R  
 - **Platform**: Illumina HumanMethylation450K BeadChip  
 - **Key Packages**:  
   - `minfi`, `BiocManager`, `ggplot2`  
-  - `gplots`, `factoextra`, `qqman`  
+  - `gplots`, `factoextra`, `qqman`
 
-### 📁 Data Structure
+---
+
+## Data Structure
 
 
 > All paths are referenced programmatically in the pipeline to ensure reproducibility.
@@ -119,5 +121,4 @@ This pipeline follows best practices in methylation analysis:
 This project was developed within the course **DNA/RNA Dynamics (Module 2, Prof. Ravaioli)** of the **MSc in Bioinformatics** at the **University of Bologna**.
 
 > _This README serves as the methodological reference for our group project and supports the creation of the final report and reproducible codebase._
-
 
