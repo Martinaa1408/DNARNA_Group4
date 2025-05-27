@@ -6,7 +6,7 @@
 - [Theoretical Background](#theoretical-background)
 - [Assigned Parameters](#assigned-parameters)
 - [Tools and Technologies](#tools-and-technologies)
-- [Input Data Structure](#input-data-structure)
+- [Repository Structure](#repository-structure)
 - [Workflow Summary](#workflow-summary)
 - [Motivation and Rationale](#motivation-and-rationale)
 - [Outputs and Deliverables](#outputs-and-deliverables)
@@ -81,7 +81,7 @@ The methylation level is calculated using:
 
 ---
 
-## Input Data Structure
+## Repository Structure
 
 /Input_data/ → .idat files (Red and Green channels) and SampleSheet.csv
 
