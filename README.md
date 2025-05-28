@@ -36,7 +36,7 @@ This repository contains the DNA methylation analysis performed by **Group 4** f
 
 **DNA methylation** is an epigenetic modification in which a methyl group (–CH₃) is covalently added to the 5-carbon position of cytosine residues, primarily within CpG dinucleotides. This biochemical mark modulates gene expression without altering the nucleotide sequence, typically resulting in transcriptional repression when located in gene promoters or CpG islands.
 
-<!-- text separator -->
+➖
 
 **Illumina BeadChip arrays** (e.g. HumanMethylation450K) assess methylation at over 450,000 CpG sites by analyzing bisulfite-treated genomic DNA. After bisulfite conversion, each CpG is interrogated using probes designed to discriminate between methylated and unmethylated sequences:
 
@@ -47,7 +47,7 @@ This repository contains the DNA methylation analysis performed by **Group 4** f
 -**Infinium II**: uses a single probe per CpG site, relying on two-color detection to distinguish between 
  methylated and unmethylated states via differential base incorporation at the single-base extension site.
 
-<!-- text separator -->
+➖
 
 After **bisulfite treatment**:
 
@@ -55,7 +55,7 @@ After **bisulfite treatment**:
 
 -**Methylated cytosines** remain **unchanged**, preserving the original cytosine signal.
 
-<!-- text separator -->
+➖
 
 **Fluorescence detection** is based on labeled nucleotide incorporation at the single-base extension site:
 
@@ -65,7 +65,7 @@ After **bisulfite treatment**:
 
 [Infinium I and II](figures/infinium_scheme.png)
 
-<!-- text separator -->
+➖
 
 The **methylation level** is calculated using:
 
@@ -83,7 +83,7 @@ The **methylation level** is calculated using:
 
 **Note**: M-values are approximately linear around β = 0.5, but expand better dynamic range at the extremes (β ≈ 0 or 1).
 
-<!-- text separator -->
+➖
 
 **Normalization** is crucial to remove technical biases (batch effects, probe design, dye bias). Several methods exist:
 
