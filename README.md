@@ -45,11 +45,11 @@ This repository contains the DNA methylation analysis performed by **Group 4** f
 -**Infinium II**: uses a single probe per CpG site, relying on two-color detection to distinguish between 
  methylated and unmethylated states via differential base incorporation at the single-base extension site.
 
-After bisulfite treatment:
+After **bisulfite treatment**:
 
--Unmethylated cytosines are deaminated to uracils, which are then amplified as thymines during PCR.
+-**Unmethylated cytosines** are deaminated to **uracils**, which are then amplified as thymines during PCR.
 
--Methylated cytosines remain unchanged, preserving the original cytosine signal.
+-**Methylated cytosines** remain **unchanged**, preserving the original cytosine signal.
 
 **Fluorescence detection** is based on labeled nucleotide incorporation at the single-base extension site:
 
@@ -62,17 +62,11 @@ After bisulfite treatment:
 
 The **methylation level** is calculated using:
 
-- **Beta value (β)**:  
-  \[
-  \beta = \frac{M}{M + U + 100}
-  \]  
+- **Beta value (β)**: (β) = M / (M + U + 100)
   Proportion of methylated signal (0 = unmethylated, 1 = fully methylated). Easy to interpret but 
   compressed at extremes.
 
-- **M-value**:  
-  \[
-  M = \log_2 \left( \frac{M + 1}{U + 1} \right)
-  \]  
+- **M-value**: log2((M + 1) / (U + 1)) 
   Log2 ratio of methylated vs unmethylated intensity. Preferred for statistical modeling due to better 
   distribution properties.
 
