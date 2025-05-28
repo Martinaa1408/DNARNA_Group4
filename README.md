@@ -57,16 +57,18 @@ After **bisulfite treatment**:
 
 -**Red fluorescence** (e.g., Cy5) → indicates incorporation corresponding to an unmethylated cytosine.
 
-![Infinium I and II](figures/infinium_scheme.png)
+![Infinium I and II](https://github.com/Martinaa1408/DNARNA_Group4/blob/main/figures/infinium_scheme.png)
 
 
 The **methylation level** is calculated using:
 
-- **Beta value (β)**: (β) = M / (M + U + 100)
+- **Beta value (β)**:
+  (β) = M / (M + U + 100)
   Proportion of methylated signal (0 = unmethylated, 1 = fully methylated). Easy to interpret but 
   compressed at extremes.
 
-- **M-value**: log2((M + 1) / (U + 1)) 
+- **M-value**:
+  log2((M + 1) / (U + 1)) 
   Log2 ratio of methylated vs unmethylated intensity. Preferred for statistical modeling due to better 
   distribution properties.
 
