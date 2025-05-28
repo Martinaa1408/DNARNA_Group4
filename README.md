@@ -34,31 +34,60 @@ This repository contains the DNA methylation analysis performed by **Group 4** f
 
 ## Theoretical Background
 
-**DNA methylation** is an epigenetic modification where a methyl group is added to cytosine bases, primarily at CpG dinucleotides. This mechanism regulates gene expression without altering the DNA sequence, often repressing transcription when methylation occurs in gene promoters or CpG islands.
+**DNA methylation** is an epigenetic modification in which a methyl group (–CH₃) is covalently added to the 5-carbon position of cytosine residues, primarily within CpG dinucleotides. This biochemical mark modulates gene expression without altering the nucleotide sequence, typically resulting in transcriptional repression when located in gene promoters or CpG islands.
 
-**Illumina BeadChip arrays** quantify methylation at >450,000 CpG sites using bisulfite-converted DNA. Each CpG site is interrogated using probes that detect either the methylated or unmethylated version of the sequence:
+**Illumina BeadChip arrays** (e.g. HumanMethylation450K) assess methylation at over 450,000 CpG sites by analyzing bisulfite-treated genomic DNA. After bisulfite conversion, each CpG is interrogated using probes designed to discriminate between methylated and unmethylated sequences:
 
-- **Infinium I**: two probes per CpG site, single-color detection  
-- **Infinium II**: one probe per site, dual-color detection
+-**Infinium I**: employs two separate probes per CpG site, each specific to either the methylated or 
+ unmethylated sequence, and uses single-color fluorescence detection (either red or green depending on 
+ the base).
+
+-**Infinium II**: uses a single probe per CpG site, relying on two-color detection to distinguish between 
+ methylated and unmethylated states via differential base incorporation at the single-base extension site.
 
 After bisulfite treatment:
 
-- Unmethylated cytosines become uracils (then thymines after PCR)
-- Methylated cytosines remain unchanged
+-Unmethylated cytosines are deaminated to uracils, which are then amplified as thymines during PCR.
 
-Fluorescence detection:
-- Green fluorescence → indicates methylated cytosines
-- Red fluorescence → indicates unmethylated cytosines
+-Methylated cytosines remain unchanged, preserving the original cytosine signal.
+
+**Fluorescence detection** is based on labeled nucleotide incorporation at the single-base extension site:
+
+-**Green fluorescence** (e.g., Cy3) → indicates incorporation of a base matching a methylated cytosine.
+
+-**Red fluorescence** (e.g., Cy5) → indicates incorporation corresponding to an unmethylated cytosine.
 
 ![Infinium I and II](figures/infinium_scheme.png)
 
 
-The methylation level is calculated using:
+The **methylation level** is calculated using:
 
-- **Beta value (β)**: proportion of methylated signal, ranging from 0 (unmethylated) to 1 (fully methylated)
-- **M-value**: log2 ratio of methylated/unmethylated intensity
+- **Beta value (β)**:  
+  \[
+  \beta = \frac{M}{M + U + 100}
+  \]  
+  Proportion of methylated signal (0 = unmethylated, 1 = fully methylated). Easy to interpret but 
+  compressed at extremes.
 
-**Normalization** is essential to correct for technical and probe-design biases. We used `preprocessFunnorm`, a method optimized for heterogeneous samples.
+- **M-value**:  
+  \[
+  M = \log_2 \left( \frac{M + 1}{U + 1} \right)
+  \]  
+  Log2 ratio of methylated vs unmethylated intensity. Preferred for statistical modeling due to better 
+  distribution properties.
+
+**Note**: M-values are approximately linear around β = 0.5, but expand better dynamic range at the extremes (β ≈ 0 or 1):contentReference[oaicite:0]{index=0}.
+
+
+**Normalization** is crucial to remove technical biases (batch effects, probe design, dye bias). Several methods exist:
+
+- `preprocessFunnorm`: **Functional normalization** using control probes; ideal for datasets with global 
+   methylation differences (e.g. cancer).
+- `preprocessQuantile`: Subset-quantile normalization for comparability across arrays.
+- `preprocessNoob`: Background correction using out-of-band probes.
+- `preprocessSWAN`: Adjusts for probe-type bias (Infinium I vs II).
+
+In this project, we applied **`preprocessFunnorm`**, which is robust against heterogeneity and preserves biological differences:contentReference[oaicite:1]{index=1}.
 
 ---
 
@@ -139,8 +168,15 @@ This project was developed for the *DNA/RNA Dynamics* course (Module 2, Prof. Ra
 ## Resources and References
 
 - [`minfi` – Bioconductor package](https://bioconductor.org/packages/release/bioc/html/minfi.html)  
+A powerful R/Bioconductor package for analyzing Illumina Infinium methylation arrays. It supports     
+preprocessing, normalization, quality control, and downstream statistical analysis for 450K and EPIC 
+arrays.
+
 - [Illumina 450K Product Files](https://support.illumina.com/downloads/infinium_humanmethylation450_product_files.html)  
-- [GEO Datasets – Illumina 450K](https://www.ncbi.nlm.nih.gov/geo/query/?search=450k)  
-- [BeadArray Technology Overview](https://www.illumina.com/techniques/microarrays/array-data-analysis-experimental-design/beadarrays.html)
+Official page from Illumina providing downloadable content related to the 450K array: annotation files, manifest files, sample sheets, and reference genome mappings.
+
+- [Infinium HumanMethylation450 BeadChip – Product Datasheet (PDF)](https://www.illumina.com/content/dam/illumina-marketing/documents/products/datasheets/datasheet_humanmethylation450.pdf)  
+Technical datasheet describing the design, probe chemistry, and applications of the 450K array. Includes performance metrics and hybridization details.
+
 
 > _The repository documents a reproducible methylation analysis workflow combining theoretical background and practical skills._
