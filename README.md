@@ -45,11 +45,13 @@ This repository contains the DNA methylation analysis performed by **Group 4** f
 -**Infinium II**: uses a single probe per CpG site, relying on two-color detection to distinguish between 
  methylated and unmethylated states via differential base incorporation at the single-base extension site.
 
+
 After **bisulfite treatment**:
 
 -**Unmethylated cytosines** are deaminated to **uracils**, which are then amplified as thymines during PCR.
 
 -**Methylated cytosines** remain **unchanged**, preserving the original cytosine signal.
+
 
 **Fluorescence detection** is based on labeled nucleotide incorporation at the single-base extension site:
 
