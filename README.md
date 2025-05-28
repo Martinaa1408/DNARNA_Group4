@@ -53,15 +53,13 @@ After **bisulfite treatment**:
 
 -**Methylated cytosines** remain **unchanged**, preserving the original cytosine signal.
 
-
+![Infinium I and II](https://github.com/Martinaa1408/DNARNA_Group4/blob/main/figures/infinium_scheme.png)
 
 **Fluorescence detection** is based on labeled nucleotide incorporation at the single-base extension site:
 
 -**Green fluorescence** (e.g., Cy3) → indicates incorporation of a base matching a methylated cytosine.
 
 -**Red fluorescence** (e.g., Cy5) → indicates incorporation corresponding to an unmethylated cytosine.
-
-![Infinium I and II](https://github.com/Martinaa1408/DNARNA_Group4/blob/main/figures/infinium_scheme.png)
 
 
 The **methylation level** is calculated using:
