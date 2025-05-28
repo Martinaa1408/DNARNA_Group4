@@ -61,7 +61,7 @@ After **bisulfite treatment**:
 
 -**Red fluorescence** (e.g., Cy5) → indicates incorporation corresponding to an unmethylated cytosine.
 
-[Infinium I and II](figures/infinium_scheme.png)
+![Infinium I and II](figures/infinium_scheme.png)
 
 
 The **methylation level** is calculated using:
