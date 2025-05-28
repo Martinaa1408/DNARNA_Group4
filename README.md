@@ -74,7 +74,7 @@ The **methylation level** is calculated using:
   Log2 ratio of methylated vs unmethylated intensity. Preferred for statistical modeling due to better 
   distribution properties.
 
-**Note**: M-values are approximately linear around β = 0.5, but expand better dynamic range at the extremes (β ≈ 0 or 1):contentReference[oaicite:0]{index=0}.
+**Note**: M-values are approximately linear around β = 0.5, but expand better dynamic range at the extremes (β ≈ 0 or 1).
 
 
 **Normalization** is crucial to remove technical biases (batch effects, probe design, dye bias). Several methods exist:
@@ -85,7 +85,7 @@ The **methylation level** is calculated using:
 - `preprocessNoob`: Background correction using out-of-band probes.
 - `preprocessSWAN`: Adjusts for probe-type bias (Infinium I vs II).
 
-In this project, we applied **`preprocessFunnorm`**, which is robust against heterogeneity and preserves biological differences:contentReference[oaicite:1]{index=1}.
+In this project, we applied **`preprocessFunnorm`**, which is robust against heterogeneity and preserves biological differences.
 
 ---
 
