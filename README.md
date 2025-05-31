@@ -123,9 +123,11 @@ In this project, we applied **`preprocessFunnorm`**, which is robust against het
 
 /Input_data/ → .idat files (Red and Green channels) and SampleSheet.csv
 
-/scripts/ → pipeline_group4.R
+/scripts/ → pipeline_group4.R and report.html
 
 /output/ → figures, tables, PCA, volcano, heatmap
+
+/supplementary_materials/ → 
 
 **Download RGset.RData** (processed methylation object):  
 https://drive.google.com/uc?export=download&id=1eIU1pHnwIDmMTmn73Zu3RdZgdcb_ZFux
