@@ -10,7 +10,6 @@
 - [Workflow Summary](#workflow-summary)
 - [Motivation and Rationale](#motivation-and-rationale)
 - [Outputs and Deliverables](#outputs-and-deliverables)
-- [Academic Context](#academic-context)
 - [Resources and References](#resources-and-references)
 
 ---
@@ -35,6 +34,8 @@ This repository contains the DNA methylation analysis performed by **Group 4** f
 ## Theoretical Background
 
 **DNA methylation** is an epigenetic modification in which a methyl group (–CH₃) is covalently added to the 5-carbon position of cytosine residues, primarily within CpG dinucleotides. This biochemical mark modulates gene expression without altering the nucleotide sequence, typically resulting in transcriptional repression when located in gene promoters or CpG islands.
+
+
 
 ➖
 
@@ -162,12 +163,6 @@ This workflow ensures:
 - Volcano & Manhattan plots of DMPs
 - Heatmap of top 100 differentially methylated probes
 - Summary tables: raw p, BH-adjusted, Bonferroni
-
----
-
-## Academic Context
-
-This project was developed for the *DNA/RNA Dynamics* course (Module 2, Prof. Ravaioli) within the **MSc in Bioinformatics** program at the **University of Bologna**.
 
 ---
 
