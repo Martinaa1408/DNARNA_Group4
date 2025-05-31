@@ -39,7 +39,7 @@ This repository contains the DNA methylation analysis performed by **Group 4** f
 
 **Illumina BeadChip arrays** (e.g., HumanMethylation450K) analyze over 450,000 CpG sites by interrogating bisulfite-treated genomic DNA.
 
-<img src="figures/illumina_bead_chip.png" alt="Infinium HumanMethylation450 BeadChip" width="350"/>
+<img src="figures/illumina_bead_chip.png" alt="Infinium HumanMethylation450 BeadChip" width="300"/>
 
 Following bisulfite treatment, each CpG site is analyzed using probes that differentiate methylated and unmethylated states:
 
