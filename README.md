@@ -58,7 +58,7 @@ Following bisulfite treatment, each CpG site is analyzed using probes that diffe
 - **Green (e.g., Cy3)** → indicates methylated state.
 - **Red (e.g., Cy5)** → indicates unmethylated state.
 
-<img src="figures/infinium_scheme.png" alt="Infinium I and II" width="350"/>
+<img src="figures/infinium_scheme.png" alt="Infinium I and II" width="400"/>
 
 ➖
 
