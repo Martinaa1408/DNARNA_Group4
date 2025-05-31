@@ -35,11 +35,13 @@ This repository contains the DNA methylation analysis performed by **Group 4** f
 
 **DNA methylation** is an epigenetic modification in which a methyl group (–CH₃) is covalently added to the 5-carbon position of cytosine residues, primarily within CpG dinucleotides. This biochemical mark modulates gene expression without altering the nucleotide sequence, typically resulting in transcriptional repression when located in gene promoters or CpG islands.
 
-
-
 ➖
 
-**Illumina BeadChip arrays** (e.g. HumanMethylation450K) assess methylation at over 450,000 CpG sites by analyzing bisulfite-treated genomic DNA. After bisulfite conversion, each CpG is interrogated using probes designed to discriminate between methylated and unmethylated sequences:
+**Illumina BeadChip arrays** (e.g. HumanMethylation450K) assess methylation at over 450,000 CpG sites by analyzing bisulfite-treated genomic DNA. 
+
+[Infinium® HumanMethylation450 BeadChip](figures/illumina_bead_cchip)
+
+After bisulfite conversion, each CpG is interrogated using probes designed to discriminate between methylated and unmethylated sequences:
 
 -**Infinium I**: employs two separate probes per CpG site, each specific to either the methylated or 
  unmethylated sequence, and uses single-color fluorescence detection (either red or green depending on 
