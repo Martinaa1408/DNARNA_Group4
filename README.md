@@ -15,7 +15,7 @@
 ---
 
 ## Project Overview
-This repository contains the DNA methylation analysis performed by **Group 4** for the *DNA/RNA Dynamics* course (Module 2, Prof. Francesco Ravaioli), MSc in Bioinformatics – University of Bologna. The objective is to identify differentially methylated positions (DMPs) between **wild-type (WT)** and **mutant (MUT)** samples using the Illumina HumanMethylation450K array and the `minfi` R package.
+This repository contains the DNA methylation analysis performed by **Group 4** for the *DNA/RNA Dynamics* course (Module 2, Prof. Francesco Ravaioli), MSc in Bioinformatics – University of Bologna. The project aims to identify differentially methylated positions (DMPs) between **control (CTRL)** and **disease (DIS)** samples using the Illumina HumanMethylation450K array and the `minfi` R package.
 
 ---
 
@@ -33,81 +33,80 @@ This repository contains the DNA methylation analysis performed by **Group 4** f
 
 ## Theoretical Background
 
-**DNA methylation** is an epigenetic modification in which a methyl group (–CH₃) is covalently added to the 5-carbon position of cytosine residues, primarily within CpG dinucleotides. This biochemical mark modulates gene expression without altering the nucleotide sequence, typically resulting in transcriptional repression when located in gene promoters or CpG islands.
+**DNA methylation** is an epigenetic modification where a methyl group (–CH₃) is covalently added to the 5-carbon position of cytosine residues, predominantly within CpG dinucleotides. This biochemical mark modulates gene expression without altering the DNA sequence, typically leading to transcriptional repression when present in gene promoters or CpG islands.
 
 ➖
 
-**Illumina BeadChip arrays** (e.g. HumanMethylation450K) assess methylation at over 450,000 CpG sites by analyzing bisulfite-treated genomic DNA. 
+**Illumina BeadChip arrays** (e.g., HumanMethylation450K) analyze over 450,000 CpG sites by interrogating bisulfite-treated genomic DNA.
 
-[Infinium® HumanMethylation450 BeadChip](figures/illumina_bead_chip.png)
+![Infinium HumanMethylation450 BeadChip](figures/illumina_bead_chip.png)
 
-After bisulfite conversion, each CpG is interrogated using probes designed to discriminate between methylated and unmethylated sequences:
+Following bisulfite treatment, each CpG site is analyzed using probes that differentiate methylated and unmethylated states:
 
--**Infinium I**: employs two separate probes per CpG site, each specific to either the methylated or 
- unmethylated sequence, and uses single-color fluorescence detection (either red or green depending on 
- the base).
-
--**Infinium II**: uses a single probe per CpG site, relying on two-color detection to distinguish between 
- methylated and unmethylated states via differential base incorporation at the single-base extension site.
+- **Infinium I**: uses two separate probes per CpG site, each specific to either the methylated or unmethylated state, with single-color fluorescence detection (red or green).
+- **Infinium II**: uses a single probe per CpG site, distinguishing methylation states via two-color detection based on base incorporation at the single-base extension site.
 
 ➖
 
-After **bisulfite treatment**:
-
--**Unmethylated cytosines** are deaminated to **uracils**, which are then amplified as thymines during PCR.
-
--**Methylated cytosines** remain **unchanged**, preserving the original cytosine signal.
+**Bisulfite conversion** results in:
+- **Unmethylated cytosines** → converted to **uracils** → amplified as **thymines** during PCR.
+- **Methylated cytosines** → remain **unchanged**, preserving the methylation signal.
 
 ➖
 
-**Fluorescence detection** is based on labeled nucleotide incorporation at the single-base extension site:
+**Fluorescence detection**:
+- **Green (e.g., Cy3)** → indicates methylated state.
+- **Red (e.g., Cy5)** → indicates unmethylated state.
 
--**Green fluorescence** (e.g., Cy3) → indicates incorporation of a base matching a methylated cytosine.
-
--**Red fluorescence** (e.g., Cy5) → indicates incorporation corresponding to an unmethylated cytosine.
-
-[Infinium I and II](figures/infinium_scheme.png)
+![Infinium I and II](figures/infinium_scheme.png)
 
 ➖
 
-The **methylation level** is calculated using:
+**Methylation levels** are quantified using:
 
-- **Beta value (β)**:
-  (β) = M / (M + U + 100)
-  <!-- formula separator -->
-  Proportion of methylated signal (0 = unmethylated, 1 = fully methylated). Easy to interpret but 
-  compressed at extremes.
+**Beta value (β):**
 
-- **M-value**:
-  log2((M + 1) / (U + 1))
-  <!-- formula separator -->
-  Log2 ratio of methylated vs unmethylated intensity. Preferred for statistical modeling due to better 
-  distribution properties.
+$$
+\beta = \frac{M}{M + U + 100}
+$$
 
-**Note**: M-values are approximately linear around β = 0.5, but expand better dynamic range at the extremes (β ≈ 0 or 1).
+where:
+- **M** = intensity of the methylated signal
+- **U** = intensity of the unmethylated signal
 
-➖
+Values range from 0 (completely unmethylated) to 1 (fully methylated).
 
-**Normalization** is crucial to remove technical biases (batch effects, probe design, dye bias). Several methods exist:
+---
 
-- `preprocessFunnorm`: **Functional normalization** using control probes; ideal for datasets with global 
-   methylation differences (e.g. cancer).
-- `preprocessQuantile`: Subset-quantile normalization for comparability across arrays.
-- `preprocessNoob`: Background correction using out-of-band probes.
-- `preprocessSWAN`: Adjusts for probe-type bias (Infinium I vs II).
+**M-value (M):**
 
-In this project, we applied **`preprocessFunnorm`**, which is robust against heterogeneity and preserves biological differences.
+$$
+M = \log_2 \left( \frac{M + 1}{U + 1} \right)
+$$
+
+Preferred for statistical modeling due to better variance properties, especially at extreme methylation levels.
+
+---
+
+**Normalization** is crucial to mitigate technical variability and batch effects:
+
+- `preprocessFunnorm`: uses control probes for functional normalization (robust to heterogeneity).
+- `preprocessQuantile`: subset-quantile normalization across arrays.
+- `preprocessNoob`: background correction using out-of-band probes.
+- `preprocessSWAN`: adjusts for probe-type bias.
+
+In this project, we adopted **`preprocessFunnorm`**, which preserves biological signals while controlling technical noise.
 
 ---
 
 ## Assigned Parameters
 
-| Parameter               | Value          |
-|------------------------|----------------|
-| Group ID               | 4              |
-| Probe Address          | 44666390       |
-| Detection p-value cut-off | 0.01         |
-| Normalization method   | preprocessFunnorm |
+| Parameter                 | Value          |
+|---------------------------|----------------|
+| Group ID                  | 4              |
+| Probe Address             | 44666390       |
+| Detection p-value cut-off | 0.01           |
+| Normalization method      | preprocessFunnorm |
 
 ---
 
@@ -121,39 +120,36 @@ In this project, we applied **`preprocessFunnorm`**, which is robust against het
 
 ## Repository Structure
 
-/Input_data/ → .idat files (Red and Green channels) and SampleSheet.csv
+- `/input_data/` → .idat files (red and green channels) and SampleSheet.csv
+- `/scripts/` → pipeline_group4.R and report.html
+- `/outputs/` → figures, tables, PCA, volcano plots, heatmaps
+- `/supplementary_materials/` → additional resources
 
-/scripts/ → pipeline_group4.R and report.html
-
-/output/ → figures, tables, PCA, volcano, heatmap
-
-/supplementary_materials/ → 
-
-**Download RGset.RData** (processed methylation object):  
-https://drive.google.com/uc?export=download&id=1eIU1pHnwIDmMTmn73Zu3RdZgdcb_ZFux
+**Download processed RGset object**:  
+[RGset.RData](https://drive.google.com/uc?export=download&id=1eIU1pHnwIDmMTmn73Zu3RdZgdcb_ZFux)
 
 ---
 
 ## Workflow Summary
 
-- Load IDAT files using `read.metharray.exp()`
-- Extract red/green signal for probe 44666390
-- Create `MSet.raw` with `preprocessRaw()`
-- Perform quality control (detection p-values, QC plots)
-- Normalize data using `preprocessFunnorm`
-- Conduct PCA for sample stratification
-- Perform differential methylation analysis (t-test + BH and Bonferroni)
-- Visualize results: PCA plots, volcano, Manhattan, heatmap
+1. Load IDAT files using `read.metharray.exp()`.
+2. Extract red/green signals for probe 44666390.
+3. Create `MSet.raw` using `preprocessRaw()`.
+4. Perform quality control (detection p-values, QC plots).
+5. Normalize data using `preprocessFunnorm`.
+6. Conduct PCA to assess sample stratification.
+7. Perform differential methylation analysis (t-test, BH and Bonferroni corrections).
+8. Visualize results: PCA, volcano, Manhattan plots, heatmaps.
 
 ---
 
 ## Motivation and Rationale
 
 This workflow ensures:
-- Reliable probe filtering via detection p-values
-- Correction for type I/II probe bias through Funnorm
-- Reproducible identification of biologically relevant DMPs
-- Clear data visualization for interpretation and reporting
+- Rigorous probe filtering using detection p-values.
+- Correction for probe-type bias with Funnorm.
+- Reproducible identification of biologically meaningful DMPs.
+- Comprehensive visualization of results to facilitate interpretation.
 
 ---
 
@@ -161,27 +157,27 @@ This workflow ensures:
 
 - Annotated R script (`pipeline_group4.R`)
 - Fluorescence table for probe 44666390
-- Quality control metrics (plotQC, detection p)
+- Quality control metrics (plotQC, detection p-values)
 - Raw vs normalized beta value plots
 - PCA plots by group, sex, batch
-- Volcano & Manhattan plots of DMPs
-- Heatmap of top 100 differentially methylated probes
-- Summary tables: raw p, BH-adjusted, Bonferroni
+- Volcano and Manhattan plots of DMPs
+- Heatmap of the top 100 differentially methylated probes
+- Summary tables with raw p-values, BH-adjusted, and Bonferroni-corrected p-values
 
 ---
 
 ## Resources and References
 
 - [`minfi` – Bioconductor package](https://bioconductor.org/packages/release/bioc/html/minfi.html)  
-A powerful R/Bioconductor package for analyzing Illumina Infinium methylation arrays. It supports     
-preprocessing, normalization, quality control, and downstream statistical analysis for 450K and EPIC 
-arrays.
+  An R/Bioconductor package for Illumina methylation array analysis, including preprocessing, normalization, and differential methylation detection.
 
 - [Illumina 450K Product Files](https://support.illumina.com/downloads/infinium_humanmethylation450_product_files.html)  
-Official page from Illumina providing downloadable content related to the 450K array: annotation files, manifest files, sample sheets, and reference genome mappings.
+  Official documentation and downloads: manifest files, annotation files, and sample sheets.
 
-- [Infinium HumanMethylation450 BeadChip – Product Datasheet (PDF)](https://www.illumina.com/content/dam/illumina-marketing/documents/products/datasheets/datasheet_humanmethylation450.pdf)  
-Technical datasheet describing the design, probe chemistry, and applications of the 450K array. Includes performance metrics and hybridization details.
+- [Infinium HumanMethylation450 BeadChip – Datasheet (PDF)](https://www.illumina.com/content/dam/illumina-marketing/documents/products/datasheets/datasheet_humanmethylation450.pdf)  
+  Detailed technical overview: probe design, detection chemistry, and array performance.
 
+---
 
-> _The repository documents a reproducible methylation analysis workflow combining theoretical background and practical skills._
+> _This repository documents a reproducible methylation analysis workflow combining theoretical insights and practical bioinformatics skills, tailored for CTRL vs DIS comparisons._
+
