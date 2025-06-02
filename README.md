@@ -121,57 +121,65 @@ In this project, we adopted **`preprocessFunnorm`**, which preserves biological 
 
 - `/input_data/`directory →
   
-   16 `.idat files` (red and green channels): Raw data files containing the intensities of probes for        each sample in the red and green fluorescence channels, required for downstream preprocessing and         analysis.
+   16 `.idat files` (red and green channels): Raw data files containing the intensities of probes for each sample in the red and green
+   fluorescence channels, required for downstream preprocessing and analysis.
   
-  `SampleSheet_Report_II.csv`: CSV file containing metadata about the samples (e.g., sample IDs, groups,     batch information) and their corresponding .idat files; used by the pipeline to associate data with       sample annotations.
+  `SampleSheet_Report_II.csv`: CSV file containing metadata about the samples (e.g., sample IDs, groups, batch information) and their cor-
+   responding .idat files; used by the pipeline to associate data with sample annotations.
   
 - `/scripts/` directory →
   
-  `pipeline_group4.R`: R script containing the main analysis pipeline, including data preprocessing,         normalization, PCA, quality control, and plotting.
+  `pipeline_group4.R`: R script containing the main analysis pipeline, including data preprocessing, normalization, PCA, quality control,
+   and plotting.
   
-  `report.html`: HTML report automatically generated from the pipeline, summarizing the analysis results     with interactive visualizations and tables.
+  `report.html`: HTML report automatically generated from the pipeline, summarizing the analysis results with interactive visualizations
+   and tables.
   
 - `/outputs/` directory →
 
-  `Density_plot.png`: Density plot showing the distribution of beta values (or intensity values) for         quality control and detection of potential outliers.
+  `Density_plot.png`: Density plot showing the distribution of beta values (or intensity values) for quality control and detection of potential               outliers.
 
-  `Green_Fluorescences_Table.yaml`: YAML file containing tabular data of green channel fluorescence          intensities for each sample.
+  `Green_Fluorescences_Table.yaml`: YAML file containing tabular data of green channel fluorescence intensities for each sample.
 
   `PCA_batch_plot.png`: PCA plot with samples colored by batch to identify potential batch effects.
 
-  `PCA_groups_plot.png`: PCA plot with samples colored by experimental group (e.g., CTRL/DIS) to identify    clustering patterns.
+  `PCA_groups_plot.png`: PCA plot with samples colored by experimental group (e.g., CTRL/DIS) to identify clustering patterns.
 
-  `PCA_sex_plot.png`: PCA plot with samples colored by sex (e.g., Female/Male) to evaluate sex-related       effects in the data.
+  `PCA_sex_plot.png`: PCA plot with samples colored by sex (e.g., Female/Male) to evaluate sex-related effects in the data.
 
-  `Red_Fluorescences_Table.yaml`: YAML file containing tabular data of red channel fluorescence              intensities for each sample.
+  `Red_Fluorescences_Table.yaml`: YAML file containing tabular data of red channel fluorescence intensities for each sample.
 
-  `df_address.pdf`: PDF table listing the physical addresses (sample positions) on the plate for quality     control and troubleshooting.
+  `df_address.pdf`: PDF table listing the physical addresses (sample positions) on the plate for quality control and troubleshooting.
 
   `df_failed.pdf`: PDF table summarizing failed or excluded samples from the analysis.
 
-  `negative_control_intensity_check.png`: Plot showing negative control intensities to evaluate assay        specificity and background levels.
+  `negative_control_intensity_check.png`: Plot showing negative control intensities to evaluate assay specificity and background levels.
 
-  `qc_plot_msetraw.png`: Quality control plot showing raw data distributions (MSet raw) before               normalization.
+  `qc_plot_msetraw.png`: Quality control plot showing raw data distributions (MSet raw) before normalization.
 
-  `raw_vs_normalized.plot.png`: Scatter plot comparing raw versus normalized values to assess the            effectiveness of normalization.
+  `raw_vs_normalized.plot.png`: Scatter plot comparing raw versus normalized values to assess the effectiveness of normalization.
 
-  `scree_plot.png`: Scree plot showing the variance explained by each principal component to help select     the optimal number of components.
+  `scree_plot.png`: Scree plot showing the variance explained by each principal component to help select the optimal number of components.
 
-  `Average_linkage_heatmap.png`: Heatmap showing the hierarchical clustering of samples using the average    linkage method. Highlights patterns of similarity and potential group separation.
+  `Average_linkage_heatmap.png`: Heatmap showing the hierarchical clustering of samples using the average linkage method. Highlights patterns of              similarity and potential group separation.
 
-  `Complete_linkage_heatmap.png`: Heatmap showing hierarchical clustering of samples using the complete      linkage method. This method tends to produce more compact clusters, helping to identify tight             groupings and potential subclusters.
+  `Complete_linkage_heatmap.png`: Heatmap showing hierarchical clustering of samples using the complete linkage method. This method tends to produce
+   more compact clusters, helping to identify tight groupings and potential subclusters.
 
-  `Single_linkage_heatmap.png`: Heatmap showing hierarchical clustering of samples using the single          linkage method. Useful for identifying chaining effects and subtle relationships between samples.
+  `Single_linkage_heatmap.png`: Heatmap showing hierarchical clustering of samples using the single linkage method. Useful for identifying                    chaining effects and subtle relationships between samples.
 
-  `P-value_distribution_plot.png`: Histogram showing the distribution of raw p-values from differential      methylation analysis. Useful for assessing the spread of statistical significance and potential false     positives.
+  `P-value_distribution_plot.png`: Histogram showing the distribution of raw p-values from differential methylation analysis.
+   Useful for assessing the spread of statistical significance and potential false positives.
 
-  `manhattan_plot.png`: Manhattan plot showing genome-wide –log₁₀ p-values plotted by chromosome             position. Highlights significant differentially methylated probes and their genomic context.
+  `manhattan_plot.png`: Manhattan plot showing genome-wide –log₁₀ p-values plotted by chromosome position.
+   Highlights significant differentially methylated probes and their genomic context.
 
-  `volcano_plot.png`: Volcano plot showing the relationship between effect size (delta Beta) and             statistical significance (–log₁₀ p-value). Helps to identify probes that are both highly significant      and have large effect sizes.
+  `volcano_plot.png`: Volcano plot showing the relationship between effect size (delta Beta) and statistical significance (–log₁₀ p-value).
+   Helps to identify probes that are both highly significant and have large effect sizes.
 
 - `/supplementary_materials/` directory →
   
-  `supplementary_material_gorup4.pdf`: PDF file written in LaTeX, containing supplementary materials,        including an R user manual, explanations of functions, package references, and guidelines on how          the analysis pipeline works.
+  `supplementary_material_gorup4.pdf`: PDF file written in LaTeX, containing supplementary materials, including an R user manual, explanations of             functions, package references, and guidelines on how the analysis pipeline works.
   
 **Download processed RGset object**:  
 [RGset.RData](https://drive.google.com/uc?export=download&id=1eIU1pHnwIDmMTmn73Zu3RdZgdcb_ZFux)
