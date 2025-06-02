@@ -180,7 +180,7 @@ In this project, we adopted **`preprocessFunnorm`**, which preserves biological 
 
 ## Workflow Summary
 
-<img src="figures/workflow.png" alt="DNA Methylation Analysis Workflow" width="300"/>
+<img src="figures/workflow.png" alt="DNA Methylation Analysis Workflow" width="280"/>
 
 
 1. **Data Import**  
