@@ -85,19 +85,20 @@ This document serves as an extensive technical guide for the DNA methylation ana
 \raggedright
 \begin{description}
     \item[\textbf{p-value}] The probability of obtaining a result as extreme as the observed one under the null hypothesis.
-    \item[\textbf{Detection P-value}] Indicates if the signal is distinguishable from background noise (values \textgreater{}0.01 are often unreliable).
+    \item[\textbf{Detection p-value}] Metric indicating if the probe signal is distinguishable from background noise (values >0.01 are often unreliable).
     \item[\textbf{Beta-value}] Ratio of methylated to total signal, representing methylation level (range 0–1).
-    \item[\textbf{M-value}] Log$_2$ ratio of methylated to unmethylated signal; preferred for statistical analysis.
-    \item[\textbf{CpG site}] DNA region where cytosine is followed by guanine; key site for methylation.
-    \item[\textbf{Workspace}] The R environment that stores all loaded objects.
-    \item[\textbf{Object}] Any data structure stored in R, such as vectors or data frames.
+    \item[\textbf{M-value}] Log$_2$ ratio of methylated to unmethylated signal; preferred for statistical testing due to improved variance properties.
+    \item[\textbf{CpG site}] DNA region where a cytosine nucleotide is followed by a guanine; key location for DNA methylation.
+    \item[\textbf{Heatmap}] A color-coded matrix visualization representing probe methylation across samples, often used for clustering analysis.
+    \item[\textbf{Workspace}] The R environment that stores all loaded objects during a session.
+    \item[\textbf{Object}] Any data structure stored in R, such as vectors, data frames, or lists.
     \item[\textbf{Function}] A block of R code that performs a specific task.
-    \item[\textbf{Variable}] A name assigned to an object in R.
-    \item[\textbf{Script}] Text file (.R) containing R commands.
-    \item[\textbf{Console}] The interactive prompt in RStudio or R.
-    \item[\textbf{Data Frame}] A table-like structure with rows and columns.
-    \item[\textbf{Vector}] A one-dimensional sequence of data of the same type.
-    \item[\textbf{List}] A flexible container that can store different types of objects.
+    \item[\textbf{Variable}] A name assigned to an object in R, enabling later reference.
+    \item[\textbf{Script}] A text file (.R) containing a sequence of R commands.
+    \item[\textbf{Console}] The interactive R prompt in RStudio or R.
+    \item[\textbf{Data frame}] A two-dimensional table-like structure with rows and columns.
+    \item[\textbf{Vector}] A one-dimensional sequence of data elements of the same type.
+    \item[\textbf{List}] A flexible container that can store multiple types of R objects.
 \end{description}
 \end{tcolorbox}
 
@@ -118,22 +119,23 @@ This document serves as an extensive technical guide for the DNA methylation ana
 ]
 \raggedright
 \begin{description}
-    \item[\textbf{Loop}] Structure that repeats a block of code.
-    \item[\textbf{Operator}] Symbols like \texttt{+}, \texttt{-}, \texttt{\textgreater{}}, \texttt{\textless{}}, \texttt{==} used for operations.
-    \item[\textbf{False Discovery Rate (FDR)}] Correction method controlling the expected proportion of false positives.
-    \item[\textbf{Dye Bias}] Technical artifact corrected via normalization.
-    \item[\textbf{Manifest File}] Metadata file mapping probe IDs to genomic coordinates.
-    \item[\textbf{RGChannelSet}] minfi object storing raw red and green intensities.
-    \item[\textbf{MethylSet}] minfi object after background correction.
-    \item[\textbf{Normalization}] Adjusts data to remove technical biases while preserving biological signal.
-    \item[\textbf{Batch Effect}] Unwanted variation introduced by experimental conditions (e.g. date, operator).
-    \item[\textbf{Pipeline}] Ordered sequence of analysis steps.
-    \item[\textbf{Preprocessing}] Steps like background correction and normalization to prepare data.
-    \item[\textbf{Differential Methylation}] Statistical comparison to detect differences in methylation between groups.
-    \item[\textbf{Volcano Plot}] Scatter plot showing significance (–log$_{10}$ p-value) vs. effect size.
-    \item[\textbf{Manhattan Plot}] Genome-wide plot of –log$_{10}$ p-values by chromosome position.
-    \item[\textbf{PCA (Principal Component Analysis)}] Technique to explore variance and detect batch effects.
-    \item[\textbf{Pipe Operator (\texttt{\%>\%})}] Operator from magrittr/dplyr to chain commands in readable steps.
+    \item[\textbf{Loop}] A control structure that repeats a block of code multiple times.
+    \item[\textbf{Operator}] A symbol (e.g., \texttt{+}, \texttt{-}, \texttt{>}, \texttt{<}, \texttt{==}) used to perform operations.
+    \item[\textbf{False Discovery Rate (FDR)}] Correction method that controls the expected proportion of false positives among significant results.
+    \item[\textbf{Dye Bias}] Technical artifact introduced by different dye efficiencies; corrected via normalization.
+    \item[\textbf{Manifest file}] Metadata file that maps probe IDs to genomic coordinates and annotations.
+    \item[\textbf{RGChannelSet}] minfi object storing raw red and green channel intensities.
+    \item[\textbf{MethylSet}] minfi object after background correction, ready for downstream analysis.
+    \item[\textbf{Normalization}] Process that adjusts data to remove technical variation while preserving biological differences.
+    \item[\textbf{Batch effect}] Unwanted variation introduced by experimental conditions (e.g., processing date, operator).
+    \item[\textbf{Pipeline}] An ordered sequence of analysis steps.
+    \item[\textbf{Preprocessing}] Steps like background correction and normalization applied to raw data to prepare it for analysis.
+    \item[\textbf{Differential methylation}] Statistical comparison of methylation levels between groups (e.g., disease vs. control).
+    \item[\textbf{t-test}] A statistical test comparing the means of two groups to identify significant differences.
+    \item[\textbf{Volcano plot}] A scatter plot showing significance (–log$_{10}$ p-value) versus effect size (e.g., delta beta).
+    \item[\textbf{Manhattan plot}] Genome-wide plot showing –log$_{10}$ p-values by chromosome position.
+    \item[\textbf{PCA (Principal Component Analysis)}] A technique to explore sample variance and detect batch effects.
+    \item[\textbf{Pipe operator (\texttt{\%>\%})}] An operator from magrittr/dplyr to chain commands for cleaner syntax (not used in this workflow).
 \end{description}
 \end{tcolorbox}
 
@@ -147,6 +149,10 @@ The Illumina HumanMethylation450K BeadChip enables high-throughput analysis of o
     \item \textbf{Infinium I}: Two separate probes (one for methylated, one for unmethylated) and single-color detection.
     \item \textbf{Infinium II}: A single probe with two-color detection to distinguish methylation status.
 \end{itemize}
+
+\subsection*{Bisulfite Conversion}
+Bisulfite treatment converts unmethylated cytosines into uracils (read as thymines after PCR), while methylated cytosines remain unchanged. This differential conversion allows the array probes to detect methylation states.
+
 
 \begin{table}[H]
 \centering
@@ -175,9 +181,6 @@ Interpretation & Raw signals easier to interpret & Requires correction for dye b
     \includegraphics[width=0.7\textwidth]{Screenshot 2025-05-31 085041.png}
     \caption{Example of an Illumina 450K bead chip.}
 \end{figure}
-
-\subsection*{Bisulfite Conversion}
-Bisulfite treatment converts unmethylated cytosines into uracils (read as thymines after PCR), while methylated cytosines remain unchanged. This differential conversion allows the array probes to detect methylation states.
 
 \section{R — A Deep Dive}
 \subsection*{What is R?}
@@ -249,40 +252,56 @@ my_list <- list(Numeric = my_vector, Category = my_factor, Table = my_df)
 
 Understanding these data structures is essential for efficient data manipulation and analysis in R.
 
-
-
-\section{About minfi}
-The \texttt{minfi} package is a key R/Bioconductor tool for analyzing Illumina methylation arrays. It provides:
+\section{About \texttt{minfi}}
+The \texttt{minfi} package is a comprehensive and essential R/Bioconductor toolkit for analyzing Illumina HumanMethylation arrays (450K and EPIC). It enables efficient processing and robust analysis of DNA methylation data by providing:
 \begin{itemize}
-    \item Import of raw IDAT files (\texttt{read.metharray.exp()}).
-    \item Quality control metrics (e.g. \texttt{detectionP()}).
-    \item Preprocessing, including background correction and normalization.
-    \item Calculation of Beta-values and M-values.
+    \item Import of raw IDAT files using \texttt{read.metharray.exp()}, supporting flexible sample sheet integration.
+    \item Quality control metrics, such as probe detection p-values via \texttt{detectionP()} and negative control plots, to ensure data reliability.
+    \item Preprocessing methods, including background correction and functional normalization (\texttt{preprocessFunnorm()}), to correct technical biases and batch effects.
+    \item Extraction of Beta-values and M-values using \texttt{getBeta()} and \texttt{getM()}, facilitating downstream statistical testing.
 \end{itemize}
-minfi supports downstream statistical analyses and integrates with visualization packages, making it essential for reproducible methylation analysis.
+Overall, \texttt{minfi} supports a complete methylation analysis workflow, from raw data import to preprocessing and quality assessment, making it an essential package for reproducible and high-quality methylation studies.
+
+\vspace{0.3cm}
+\noindent
+\textbf{Note.} Additional R packages were also used to support data visualization and specialized analyses, including:
+\begin{itemize}
+    \item \texttt{gplots} for heatmaps and hierarchical clustering.
+    \item \texttt{qqman} for generating Manhattan plots.
+    \item \texttt{factoextra} for PCA visualization.
+\end{itemize}
 
 \section{Project Data}
-For this project, we analyzed DNA methylation data from the Illumina HumanMethylation450K array. Below is a summary of the key files used:
+For this project, we analyzed DNA methylation data from the Illumina HumanMethylation450K array. Below is a summary of the key files and data objects used in the analysis:
 
 \begin{table}[H]
 \centering
-\begin{tabular}{|l|l|}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|l|p{9cm}|}
 \hline
-\textbf{File} & \textbf{Description} \\
+\textbf{File/Data Object} & \textbf{Description} \\
 \hline
-\texttt{samplesheet.csv} & Sample metadata (ID, group, sex, batch) \\
-\texttt{.idat files} & Raw array data (red/green intensities) \\
-\texttt{manifest file} & Probe annotation file with genomic coordinates \\
-\texttt{RGChannelSet} & Raw data object created using \texttt{read.metharray.exp()} \\
-\texttt{MethylSet} & Preprocessed data after background correction \\
+\texttt{SampleSheet.csv} & Sample metadata including ID, group (CTRL/DIS), sex, and batch. \\
+\texttt{.idat files} & Raw fluorescence intensity data (red and green channels). \\
+\texttt{Illumina450Manifest\_clean.RData} & Cleaned manifest with probe IDs, genomic coordinates, and design type. \\
+\texttt{RGChannelSet} & Raw data object created with \texttt{read.metharray.exp()}. \\
+\texttt{MSet.raw} & Preprocessed object after background correction (\texttt{preprocessRaw()}). \\
+\texttt{MSet.norm} & Normalized data using functional normalization (\texttt{preprocessFunnorm()}). \\
+\texttt{Beta/M values} & Matrices of methylation quantification (\texttt{getBeta()}, \texttt{getM()}). \\
+\texttt{DetectionP} & Detection p-values per probe/sample (\texttt{detectionP()}). \\
+\texttt{final\_ttest} & Data frame with raw p-values from group comparison. \\
+\texttt{final\_ttest\_corr} & Data frame with corrected p-values (BH and Bonferroni). \\
+\texttt{diff\_meth\_df} & Summary table of differentially methylated probes. \\
+\texttt{pca\_results} & PCA results object for sample clustering. \\
+\texttt{Plots} & Figures including density plots, boxplots, PCA, volcano, Manhattan plots, and heatmaps. \\
 \hline
 \end{tabular}
-\caption{Key files used in the Group 4 DNA methylation analysis.}
+\caption{Key files and data objects used in the Group 4 DNA methylation analysis.}
 \end{table}
 
 \vspace{0.5cm}
 
-Additionally, the following **assigned parameters** were used for the analysis:
+Additionally, the following \textbf{assigned parameters} were used for the analysis:
 
 \begin{table}[H]
 \centering
@@ -293,7 +312,8 @@ Additionally, the following **assigned parameters** were used for the analysis:
 Group ID & 4 \\
 Probe Address & 44666390 \\
 Detection p-value cut-off & 0.01 \\
-Normalization method & preprocessFunnorm \\
+Normalization method & \texttt{preprocessFunnorm()} \\
+Clustering methods & Average, Complete, Single linkage \\
 \hline
 \end{tabular}
 \caption{Assigned parameters used in the analysis.}
@@ -303,14 +323,14 @@ Normalization method & preprocessFunnorm \\
 An expanded step-by-step pipeline:
 
 \begin{enumerate}
-    \item \textbf{Data Import}: Read .idat files with \texttt{read.metharray.exp()}.
-    \item \textbf{Annotation}: Use \texttt{getManifest()} to map probe IDs.
-    \item \textbf{Quality Control}: Calculate detection p-values (\texttt{detectionP()}).
-    \item \textbf{Preprocessing}: Correct background with \texttt{preprocessRaw()} and apply functional normalization with \texttt{preprocessFunnorm()}.
+    \item \textbf{Data Import}: Read raw .idat files using \texttt{read.metharray.exp()} to create an \texttt{RGChannelSet}.
+    \item \textbf{Annotation}: Use the cleaned manifest file (\texttt{Illumina450Manifest\_clean.RData}) to map probe IDs and design types.
+    \item \textbf{Quality Control}: Calculate detection p-values (\texttt{detectionP()}) and generate quality control plots (\texttt{plotQC()}, \texttt{controlStripPlot()}).
+    \item \textbf{Preprocessing}: Apply background correction with \texttt{preprocessRaw()} and functional normalization with \texttt{preprocessFunnorm()}.
     \item \textbf{Beta/M-value Calculation}: Calculate Beta-values (\texttt{getBeta()}) and M-values (\texttt{getM()}).
-    \item \textbf{Statistical Testing}: Use \texttt{t.test()} and \texttt{shapiro.test()}.
-    \item \textbf{Multiple Testing Correction}: Apply \texttt{p.adjust()} for FDR.
-    \item \textbf{Visualization}: Create plots with \texttt{ggplot2}, \texttt{heatmap.2()}, \texttt{manhattan()}, \texttt{fviz\_pca()}.
+    \item \textbf{Statistical Testing}: Perform t-tests (\texttt{t.test()}) comparing groups.
+    \item \textbf{Multiple Testing Correction}: Apply correction for multiple testing using \texttt{p.adjust()} (methods: BH, Bonferroni).
+    \item \textbf{Visualization}: Generate density plots, boxplots, PCA plots (\texttt{prcomp()}, \texttt{fviz\_eig()}), volcano plots, Manhattan plots (\texttt{qqman}), and heatmaps (\texttt{heatmap.2()}).
 \end{enumerate}
 
 \section{The Analytical Pipeline — From Biological Question to Visualization}
@@ -320,7 +340,7 @@ A successful DNA methylation study requires a well-designed workflow that system
 \begin{enumerate}
     \item \textbf{Biological Question}
     \begin{itemize}
-        \item Define the scientific goal: e.g. `Does methylation differ between disease and control groups?''.
+        \item Define the scientific goal, e.g., “Does methylation differ between disease and control groups?”
         \item Establish hypotheses and experimental design (number of samples, replicates, conditions).
     \end{itemize}
 
@@ -333,86 +353,114 @@ A successful DNA methylation study requires a well-designed workflow that system
     \item \textbf{Data Acquisition}
     \begin{itemize}
         \item Use the Illumina HumanMethylation450K array (or EPIC) to profile methylation.
-        \item Generate raw data files (.idat).
+        \item Generate raw data files (.idat) containing red and green channel intensities.
     \end{itemize}
 
     \item \textbf{Data Import into R}
     \begin{itemize}
-        \item Use \texttt{read.metharray.exp()} to read .idat files into RGChannelSet.
-        \item Inspect sample metadata to ensure correct group labels.
+        \item Use \texttt{read.metharray.exp()} to read .idat files into an \texttt{RGChannelSet} object.
+        \item Inspect sample metadata (e.g., group, sex, batch) from \texttt{SampleSheet.csv}.
     \end{itemize}
 
     \item \textbf{Annotation}
     \begin{itemize}
-        \item Link probe IDs to genomic features using \texttt{getManifest()}.
-        \item Exclude problematic probes (e.g. SNP-overlapping, cross-hybridizing).
+        \item Link probe IDs to genomic features using the cleaned manifest (\texttt{Illumina450Manifest
+        \_clean.RData}).
+        \item Exclude problematic probes (e.g., SNP-overlapping, cross-hybridizing).
     \end{itemize}
 
     \item \textbf{Quality Control}
     \begin{itemize}
-        \item Assess detection p-values (\texttt{detectionP()}) to filter unreliable probes.
-        \item Evaluate sample quality (e.g. density plots, boxplots).
+        \item Calculate detection p-values with \texttt{detectionP()} to filter unreliable probes.
+        \item Assess sample quality using \texttt{plotQC()} and \texttt{controlStripPlot()} for negative controls.
     \end{itemize}
 
     \item \textbf{Preprocessing}
     \begin{itemize}
-        \item Apply background correction (\texttt{preprocessRaw()}).
-        \item Normalize data using functional normalization (\texttt{preprocessFunnorm()}) to mitigate technical biases.
+        \item Apply background correction using \texttt{preprocessRaw()}.
+        \item Normalize data using functional normalization with \texttt{preprocessFunnorm()} to mitigate technical biases and batch effects.
     \end{itemize}
 
     \item \textbf{Methylation Quantification}
     \begin{itemize}
-        \item Calculate Beta-values (\texttt{getBeta()}) and M-values (\texttt{getM()}).
+        \item Calculate Beta-values with \texttt{getBeta()} and M-values with \texttt{getM()}.
     \end{itemize}
 
     \item \textbf{Statistical Testing}
     \begin{itemize}
-        \item Test for differential methylation between groups using parametric (\texttt{t.test()}) or non-parametric tests.
-        \item Validate assumptions (e.g. normality using \texttt{shapiro.test()}).
+        \item Perform t-tests for group comparisons (\texttt{t.test()}).
     \end{itemize}
 
     \item \textbf{Multiple Testing Correction}
     \begin{itemize}
-        \item Apply corrections (e.g. FDR via \texttt{p.adjust()}) to control for false discoveries.
+        \item Correct p-values for multiple testing using \texttt{p.adjust()} (methods: BH and Bonferroni).
     \end{itemize}
 
     \item \textbf{Visualization}
     \begin{itemize}
-        \item Create boxplots, volcano plots, Manhattan plots, PCA plots to interpret and communicate results.
+        \item Generate density plots, boxplots, PCA plots (\texttt{prcomp()}, \texttt{fviz\_eig()}), volcano plots, Manhattan plots (\texttt{qqman}), and heatmaps (\texttt{heatmap.2()}).
     \end{itemize}
 
     \item \textbf{Biological Interpretation}
     \begin{itemize}
         \item Map significant CpGs to genes and pathways.
-        \item Integrate findings with external data (e.g. gene expression, clinical data).
+        \item Integrate methylation findings with external datasets (e.g., gene expression, clinical data).
     \end{itemize}
 \end{enumerate}
 
 \noindent
 This pipeline illustrates how each step builds upon the previous one, transforming raw experimental data into biologically meaningful insights.
 
+
+
 \section{Function Reference}
+
 \subsection*{Data Import}
 \begin{functionbox}
-read.metharray.exp() — Imports raw data into RGChannelSet.
+\texttt{read.metharray.exp()} — Imports raw .idat files into an RGChannelSet object.
+\end{functionbox}
+
+\subsection*{Annotation}
+\begin{functionbox}
+\texttt{Illumina450Manifest\_clean} — Cleaned manifest file for probe annotation.
 \end{functionbox}
 
 \subsection*{Quality Control}
 \begin{functionbox}
-detectionP() — Computes detection p-values per probe.
+\texttt{detectionP()} — Computes detection p-values per probe.\\
+\texttt{plotQC()} — Visualizes sample quality metrics.\\
+\texttt{controlStripPlot()} — Visualizes negative control probes.
 \end{functionbox}
 
 \subsection*{Preprocessing}
 \begin{functionbox}
-preprocessRaw() — Background correction.\\
-preprocessFunnorm() — Functional normalization.
+\texttt{preprocessRaw()} — Applies background correction.\\
+\texttt{preprocessFunnorm()} — Performs functional normalization.
 \end{functionbox}
 
 \subsection*{Beta/M-value Calculation}
 \begin{functionbox}
-getBeta() — Calculates Beta-values.\\
-getM() — Calculates M-values.
+\texttt{getBeta()} — Calculates Beta-values.\\
+\texttt{getM()} — Calculates M-values.
 \end{functionbox}
+
+\subsection*{Statistical Testing}
+\begin{functionbox}
+\texttt{t.test()} — Tests for group differences.
+\end{functionbox}
+
+\subsection*{Multiple Testing Correction}
+\begin{functionbox}
+\texttt{p.adjust()} — Adjusts p-values for multiple testing (BH, Bonferroni).
+\end{functionbox}
+
+\subsection*{Visualization}
+\begin{functionbox}
+\texttt{heatmap.2()} — Creates heatmaps with clustering.\\
+\texttt{fviz\_eig()} — Plots PCA eigenvalues.\\
+\texttt{manhattan()} — Generates Manhattan plots.
+\end{functionbox}
+
 
 \section{Tips and Troubleshooting}
 \begin{itemize}
@@ -432,11 +480,10 @@ getM() — Calculates M-values.
 
 
 \section{Conclusion}
-This manual is designed to guide users through the process of DNA methylation data analysis, from data import to visualization and interpretation. Our project demonstrates the critical role of bioinformatics in modern molecular biology and highlights the power of reproducible research. By using robust tools like R and minfi, we can process large datasets efficiently and gain valuable insights into epigenetic regulation and disease mechanisms.
+This manual is designed to guide users through the process of DNA methylation data analysis, from data import to visualization and interpretation. Our project demonstrates the critical role of bioinformatics in modern molecular biology and highlights the power of reproducible research. By using robust tools such as R and the minfi package, we can process large datasets efficiently and gain valuable insights into epigenetic regulation and disease mechanisms.
 
-The expected results include the identification of differentially methylated regions (DMRs) that may serve as biomarkers for disease, as well as the potential discovery of new epigenetic patterns associated with clinical outcomes. This work contributes to the broader goal of personalized medicine, where DNA methylation signatures can inform diagnostics and therapeutic strategies.
+The expected results include the identification of differentially methylated regions (DMRs) that may serve as biomarkers for disease, as well as the discovery of new epigenetic patterns associated with clinical outcomes. This work contributes to the broader goal of personalized medicine, where DNA methylation signatures can inform both diagnostics and therapeutic strategies.
 
 We hope this document empowers other researchers to replicate our pipeline and adapt it to their own datasets, fostering collaboration and accelerating discoveries in the field of epigenetics.
-
 
 \end{document}
