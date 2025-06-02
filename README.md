@@ -39,7 +39,7 @@ This repository contains the DNA methylation analysis performed by **Group 4** f
 
 **Illumina BeadChip arrays** (e.g., HumanMethylation450K) analyze over 450,000 CpG sites by interrogating bisulfite-treated genomic DNA.
 
-<img src="figures/illumina_bead_chip.png" alt="Infinium HumanMethylation450 BeadChip" width="300"/>
+<img src="figures/illumina_bead_chip.png" alt="Infinium HumanMethylation450 BeadChip" width="250"/>
 
 Following bisulfite treatment, each CpG site is analyzed using probes that differentiate methylated and unmethylated states:
 
@@ -114,7 +114,7 @@ In this project, we adopted **`preprocessFunnorm`**, which preserves biological 
 
 - **Language**: R  
 - **Platform**: Illumina HumanMethylation450K  
-- **Packages**: `minfi`, `BiocManager`, `ggplot2`, `gplots`, `factoextra`, `qqman`
+- **Packages**: `minfi`, `BiocManager`, `gplots`, `factoextra`, `qqman`
 
 ---
 
@@ -158,9 +158,21 @@ In this project, we adopted **`preprocessFunnorm`**, which preserves biological 
 
   `scree_plot.png`: Scree plot showing the variance explained by each principal component to help select     the optimal number of components.
 
+  `Average_linkage_heatmap.png`: Heatmap showing the hierarchical clustering of samples using the average    linkage method. Highlights patterns of similarity and potential group separation.
+
+  `Complete_linkage_heatmap.png`: Heatmap showing hierarchical clustering of samples using the complete      linkage method. This method tends to produce more compact clusters, helping to identify tight             groupings and potential subclusters.
+
+  `Single_linkage_heatmap.png`: Heatmap showing hierarchical clustering of samples using the single          linkage method. Useful for identifying chaining effects and subtle relationships between samples.
+
+  `P-value_distribution_plot.png`: Histogram showing the distribution of raw p-values from differential      methylation analysis. Useful for assessing the spread of statistical significance and potential false     positives.
+
+  `manhattan_plot.png`: Manhattan plot showing genome-wide –log₁₀ p-values plotted by chromosome             position. Highlights significant differentially methylated probes and their genomic context.
+
+  `volcano_plot.png`: Volcano plot showing the relationship between effect size (delta Beta) and             statistical significance (–log₁₀ p-value). Helps to identify probes that are both highly significant      and have large effect sizes.
+
 - `/supplementary_materials/` directory →
   
-  `supplementary_material.pdf`: PDF file written in LaTeX, containing supplementary materials, including     an R user manual, explanations of functions, package references, and guidelines on how the analysis       pipeline works.
+  `supplementary_material_gorup4.pdf`: PDF file written in LaTeX, containing supplementary materials,        including an R user manual, explanations of functions, package references, and guidelines on how          the analysis pipeline works.
   
 **Download processed RGset object**:  
 [RGset.RData](https://drive.google.com/uc?export=download&id=1eIU1pHnwIDmMTmn73Zu3RdZgdcb_ZFux)
@@ -233,6 +245,9 @@ This workflow ensures:
 
 - [Infinium HumanMethylation450 BeadChip – Datasheet (PDF)](https://www.illumina.com/content/dam/illumina-marketing/documents/products/datasheets/datasheet_humanmethylation450.pdf)  
   Detailed technical overview: probe design, detection chemistry, and array performance.
+
+- [minfi::preprocessFunnorm() function](https://www.rdocumentation.org/packages/minfi/versions/1.18.4/topics/preprocessFunnorm)
+Official documentation describing how to apply functional normalization to Illumina HumanMethylation arrays.
 
 ---
 
