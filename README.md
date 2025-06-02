@@ -120,11 +120,48 @@ In this project, we adopted **`preprocessFunnorm`**, which preserves biological 
 
 ## Repository Structure
 
-- `/input_data/` → .idat files (red and green channels) and SampleSheet.csv
-- `/scripts/` → pipeline_group4.R and report.html
-- `/outputs/` → figures, tables, PCA, volcano plots, heatmaps
-- `/supplementary_materials/` → additional resources
+- `/input_data/`directory →
+  
+   16 `.idat files` (red and green channels): Raw data files containing the intensities of probes for        each sample in the red and green fluorescence channels, required for downstream preprocessing and         analysis.
+  
+  `SampleSheet_Report_II.csv`: CSV file containing metadata about the samples (e.g., sample IDs, groups,     batch information) and their corresponding .idat files; used by the pipeline to associate data with       sample annotations.
+  
+- `/scripts/` directory →
+  
+  `pipeline_group4.R`: R script containing the main analysis pipeline, including data preprocessing,         normalization, PCA, quality control, and plotting.
+  
+  `report.html`: HTML report automatically generated from the pipeline, summarizing the analysis results     with interactive visualizations and tables.
+  
+- `/outputs/` directory →
 
+  `Density_plot.png`: Density plot showing the distribution of beta values (or intensity values) for         quality control and detection of potential outliers.
+
+  `Green_Fluorescences_Table.yaml`: YAML file containing tabular data of green channel fluorescence          intensities for each sample.
+
+  `PCA_batch_plot.png`: PCA plot with samples colored by batch to identify potential batch effects.
+
+  `PCA_groups_plot.png`: PCA plot with samples colored by experimental group (e.g., CTRL/DIS) to identify    clustering patterns.
+
+  `PCA_sex_plot.png`: PCA plot with samples colored by sex (e.g., Female/Male) to evaluate sex-related       effects in the data.
+
+  `Red_Fluorescences_Table.yaml`: YAML file containing tabular data of red channel fluorescence              intensities for each sample.
+
+  `df_address.pdf`: PDF table listing the physical addresses (sample positions) on the plate for quality     control and troubleshooting.
+
+  `df_failed.pdf`: PDF table summarizing failed or excluded samples from the analysis.
+
+  `negative_control_intensity_check.png`: Plot showing negative control intensities to evaluate assay        specificity and background levels.
+
+  `qc_plot_msetraw.png`: Quality control plot showing raw data distributions (MSet raw) before               normalization.
+
+  `raw_vs_normalized.plot.png`: Scatter plot comparing raw versus normalized values to assess the            effectiveness of normalization.
+
+  `scree_plot.png`: Scree plot showing the variance explained by each principal component to help select     the optimal number of components.
+
+- `/supplementary_materials/` directory →
+  
+  `supplementary_material.pdf`: PDF file written in LaTeX, containing supplementary materials, including     an R user manual, explanations of functions, package references, and guidelines on how the analysis       pipeline works.
+  
 **Download processed RGset object**:  
 [RGset.RData](https://drive.google.com/uc?export=download&id=1eIU1pHnwIDmMTmn73Zu3RdZgdcb_ZFux)
 
