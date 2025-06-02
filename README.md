@@ -9,7 +9,6 @@
 - [Repository Structure](#repository-structure)
 - [Workflow Summary](#workflow-summary)
 - [Motivation and Rationale](#motivation-and-rationale)
-- [Outputs and Deliverables](#outputs-and-deliverables)
 - [Resources and References](#resources-and-references)
 
 ---
@@ -181,7 +180,7 @@ In this project, we adopted **`preprocessFunnorm`**, which preserves biological 
 
 ## Workflow Summary
 
-<img src="figures/workflow.png" alt="DNA Methylation Analysis Workflow" width="300"/>
+<img src="figures/workflow.png" alt="DNA Methylation Analysis Workflow" width="250"/>
 
 1. **Data Import**  
    Import raw IDAT files using `read.metharray.exp()` to create the `RGChannelSet`.
@@ -219,19 +218,6 @@ This workflow ensures:
 - Correction for probe-type bias with Funnorm.
 - Reproducible identification of biologically meaningful DMPs.
 - Comprehensive visualization of results to facilitate interpretation.
-
----
-
-## Outputs and Deliverables
-
-- Annotated R script (`pipeline_group4.R`)
-- Fluorescence table for probe 44666390
-- Quality control metrics (plotQC, detection p-values)
-- Raw vs normalized beta value plots
-- PCA plots by group, sex, batch
-- Volcano and Manhattan plots of DMPs
-- Heatmap of the top 100 differentially methylated probes
-- Summary tables with raw p-values, BH-adjusted, and Bonferroni-corrected p-values
 
 ---
 
