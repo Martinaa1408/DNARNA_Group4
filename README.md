@@ -169,14 +169,34 @@ In this project, we adopted **`preprocessFunnorm`**, which preserves biological 
 
 ## Workflow Summary
 
-1. Load IDAT files using `read.metharray.exp()`.
-2. Extract red/green signals for probe 44666390.
-3. Create `MSet.raw` using `preprocessRaw()`.
-4. Perform quality control (detection p-values, QC plots).
-5. Normalize data using `preprocessFunnorm`.
-6. Conduct PCA to assess sample stratification.
-7. Perform differential methylation analysis (t-test, BH and Bonferroni corrections).
-8. Visualize results: PCA, volcano, Manhattan plots, heatmaps.
+<img src="figures/workflow.png" alt="DNA Methylation Analysis Workflow" width="600"/>
+
+1. **Data Import**  
+   Import raw IDAT files using `read.metharray.exp()` to create the `RGChannelSet`.
+
+2. **Extract Red/Green Signals**  
+   Extract red/green signals at probe address 44666390 for quality checking.
+
+3. **Preprocessing**  
+   Generate the `MSet.raw` object using `preprocessRaw()` for background correction.
+
+4. **Quality Control**  
+   Calculate detection p-values using `detectionP()` and generate QC plots (density plots, boxplots,         control strip plots).
+
+5. **Normalization**  
+   Normalize data using `preprocessFunnorm()` for functional normalization.
+
+6. **Quantification**  
+   Calculate Beta and M values using `getBeta()` and `getM()`.
+
+7. **Principal Component Analysis (PCA)**  
+   Perform PCA to assess sample stratification and batch effects.
+
+8. **Differential Methylation Analysis**  
+   Perform group comparisons using `t.test()` and apply multiple testing correction (`p.adjust()` with BH    and Bonferroni).
+
+9. **Visualization**  
+   Generate PCA plots, volcano plots, Manhattan plots, and heatmaps.
 
 ---
 
