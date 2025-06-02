@@ -180,9 +180,8 @@ In this project, we adopted **`preprocessFunnorm`**, which preserves biological 
 
 ## Workflow Summary
 
-<p align="center">
-  <img src="figures/workflow.png" alt="DNA Methylation Analysis Workflow" width="250"/>
-</p>
+<img src="figures/workflow.png" alt="DNA Methylation Analysis Workflow" width="300"/>
+
 
 1. **Data Import**  
    Import raw IDAT files using `read.metharray.exp()` to create the `RGChannelSet`.
