@@ -85,7 +85,7 @@ This document serves as an extensive technical guide for the DNA methylation ana
 \raggedright
 \begin{description}
     \item[\textbf{p-value}] The probability of obtaining a result as extreme as the observed one under the null hypothesis.
-    \item[\textbf{Detection p-value}] Metric indicating if the probe signal is distinguishable from background noise (values >0.01 are often unreliable).
+    \item[\textbf{Detection p-value}] Metric indicating if the probe signal is distinguishable from background noise (values \texttt{>} 0.01 are often unreliable).
     \item[\textbf{Beta-value}] Ratio of methylated to total signal, representing methylation level (range 0–1).
     \item[\textbf{M-value}] Log$_2$ ratio of methylated to unmethylated signal; preferred for statistical testing due to improved variance properties.
     \item[\textbf{CpG site}] DNA region where a cytosine nucleotide is followed by a guanine; key location for DNA methylation.
