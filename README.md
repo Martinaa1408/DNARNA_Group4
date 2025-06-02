@@ -179,7 +179,7 @@ In this project, we adopted **`preprocessFunnorm`**, which preserves biological 
 
 - `/supplementary_materials/` directory →
   
-  `supplementary_material_gorup4.pdf`: PDF file written in LaTeX, containing supplementary materials, including an R user manual, explanations of             functions, package references, and guidelines on how the analysis pipeline works.
+  `supplementary_materials_gorup4.pdf`: PDF file written in LaTeX, containing supplementary materials, including an R user manual, explanations of             functions, package references, and guidelines on how the analysis pipeline works.
   
 **Download processed RGset object**:  
 [RGset.RData](https://drive.google.com/uc?export=download&id=1eIU1pHnwIDmMTmn73Zu3RdZgdcb_ZFux)
