@@ -411,6 +411,48 @@ A successful DNA methylation study requires a well-designed workflow that system
 \noindent
 This pipeline illustrates how each step builds upon the previous one, transforming raw experimental data into biologically meaningful insights.
 
+\section{Interpretation of Outputs and Parameter Choices}
+
+A high-level technical discussion that complements the pipeline described earlier, focusing on the rationale behind key analytical choices and their impact on data quality, statistical reliability, and interpretation of results. By integrating theoretical principles with observations from the outputs, this discussion bridges the analysis steps with the biological and technical context of the study.
+
+\subsection{Parameter Choices and Data Quality}
+
+\textbf{Functional Normalization (\texttt{preprocessFunnorm()})} was selected to correct dye bias, background noise, and partial batch effects, leveraging internal control probes to harmonize data across samples. This choice preserves true biological variability while minimizing technical noise.
+
+\vspace{0.3em}
+\noindent\textbf{Detection p-value Cutoff (0.01)} provided a stringent filter to exclude unreliable probes whose signals may not exceed background noise. Although conservative, this threshold ensures that only high-confidence measurements are included, supporting reliable downstream analyses.
+
+\subsection{Quality Control and Normalization}
+
+Negative control and QC plots confirmed consistently low background fluorescence across samples, indicating that no sample exhibited technical anomalies. Density plots comparing raw and normalized data demonstrated that normalization effectively aligned intensity distributions, correcting systematic biases and enabling accurate group comparisons.
+
+\subsection{Methylation Distributions}
+
+Beta-value and M-value density plots displayed the expected bimodal distributions, indicating clear separation between methylated and unmethylated states and confirming the biological relevance of the data.
+
+\subsection{Principal Component Analysis (PCA)}
+
+PCA plots revealed clear separation between control and disease groups, with minimal batch and sex effects, demonstrating that potential confounding variables were adequately controlled.
+
+\subsection{Differential Methylation and Multiple Testing}
+
+The volcano plot highlighted CpGs with substantial methylation differences and significant adjusted p-values, supporting the presence of biologically relevant differential methylation. The p-value distribution plot confirmed a uniform distribution under the null hypothesis, with enrichment at low p-values consistent with true biological signals.
+
+\subsubsection*{P-Value Boxplots (Raw, BH, Bonferroni)}
+
+Boxplots comparing raw, BH-adjusted, and Bonferroni-adjusted p-values illustrated the impact of multiple testing correction: while many CpGs appeared significant using raw p-values, only a subset remained significant after correction, emphasizing the importance of controlling false discovery rates.
+
+\subsection{Genome-Wide Overview}
+
+The Manhattan plot visualized genome-wide significance, showing clusters of differentially methylated CpGs at specific chromosomal locations, supporting downstream biological interpretation.
+
+\subsection{Clustering and Heatmaps}
+
+Heatmaps using complete, average, and single linkage methods consistently grouped samples by biological condition (CTRL vs. DIS). The color gradient from green to red effectively represented the continuum from hypomethylation to hypermethylation.
+
+\subsection{Limitations and Potential Improvements}
+
+While the chosen parameters provided a strong analytical foundation, several refinements could be explored. A detection p-value cutoff of 0.01 is conservative and may exclude borderline CpGs with potential biological relevance; testing a slightly higher threshold (e.g., 0.05) could help balance stringency and inclusiveness. Alternative normalization methods, such as quantile normalization or SWAN, might perform differently depending on dataset characteristics. Although batch effects appeared minimal in PCA, additional correction using methods like ComBat could be tested to further reduce potential technical variance. Exploring different probe selections or group assignments might also assess the robustness of the findings under alternative analytical settings.
 
 
 \section{Function Reference}
