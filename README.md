@@ -168,8 +168,9 @@ In this project, we adopted **`preprocessFunnorm`**, which preserves biological 
 
   `Single_linkage_heatmap.png`: Heatmap showing hierarchical clustering of samples using the single linkage method. Useful for identifying                    chaining effects and subtle relationships between samples.
 
-  `P-value_distribution_plot.png`: Histogram showing the distribution of raw p-values from differential methylation analysis.
-   Useful for assessing the spread of statistical significance and potential false positives.
+  `p-value_raw_adjusted_plot.png`: Visualizes raw and adjusted p-values (BH, Bonferroni) to assess the impact of multiple testing correction on significance.
+
+`p-value_distribution_plot.png`: Displays the histogram of p-values from t-tests to evaluate their distribution and uniformity.
 
   `manhattan_plot.png`: Manhattan plot showing genome-wide –log₁₀ p-values plotted by chromosome position.
    Highlights significant differentially methylated probes and their genomic context.
