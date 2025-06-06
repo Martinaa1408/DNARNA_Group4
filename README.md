@@ -168,7 +168,7 @@ In this project, we adopted **`preprocessFunnorm`**, which preserves biological 
 
   `Single_linkage_heatmap.png`: Heatmap showing hierarchical clustering of samples using the single linkage method. Useful for identifying                    chaining effects and subtle relationships between samples.
 
-  `p-value_raw_adjusted_plot.png`: Visualizes raw and adjusted p-values (BH, Bonferroni) to assess the       impact of multiple testing correction on significance.
+  `p-value_distribution_raw_adjusted_plot.png`: Visualizes raw and adjusted p-values (BH, Bonferroni) to assess the       impact of multiple testing correction on significance.
 
   `p-value_distribution_plot.png`: Displays the histogram of p-values from t-tests to evaluate their         distribution and uniformity.
 
