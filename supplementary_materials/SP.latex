@@ -99,6 +99,13 @@ This document serves as an extensive technical guide for the DNA methylation ana
     \item[\textbf{Data frame}] A two-dimensional table-like structure with rows and columns.
     \item[\textbf{Vector}] A one-dimensional sequence of data elements of the same type.
     \item[\textbf{List}] A flexible container that can store multiple types of R objects.
+    \item[\textbf{False Positives}] Results that appear significant by chance but do not reflect true biological effects.
+    \item[\textbf{Benjamini-Hochberg (BH)}] A method for controlling the false discovery rate (FDR) when performing multiple statistical tests.
+    \item[\textbf{Bonferroni}] A conservative correction method for multiple testing that controls the family-wise error rate by adjusting p-values.
+    \item[\textbf{PC number}] Principal Component (PC) number; indicates the order of variance explained by each component in PCA, where PC1 captures the most variance.
+    \item[\textbf{Variance}] A statistical measure of data spread; in PCA, it represents how much variation each principal component explains.
+    \item[\textbf{Linkage}] In hierarchical clustering, linkage defines how distances between clusters are calculated; methods include complete, average, and single linkage.
+    
 \end{description}
 \end{tcolorbox}
 
@@ -119,6 +126,8 @@ This document serves as an extensive technical guide for the DNA methylation ana
 ]
 \raggedright
 \begin{description}
+    \item[\textbf{Fold Change}] The difference in mean Beta-values between two groups (e.g. disease vs. control), indicating the magnitude of methylation change.
+    \item[\textbf{QC (Quality Control)}] A set of procedures to ensure the reliability and accuracy of experimental data before downstream analysis.
     \item[\textbf{Loop}] A control structure that repeats a block of code multiple times.
     \item[\textbf{Operator}] A symbol (e.g., \texttt{+}, \texttt{-}, \texttt{>}, \texttt{<}, \texttt{==}) used to perform operations.
     \item[\textbf{False Discovery Rate (FDR)}] Correction method that controls the expected proportion of false positives among significant results.
@@ -441,6 +450,9 @@ The volcano plot highlighted CpGs with substantial methylation differences and s
 \subsubsection*{P-Value Boxplots (Raw, BH, Bonferroni)}
 
 Boxplots comparing raw, BH-adjusted, and Bonferroni-adjusted p-values illustrated the impact of multiple testing correction: while many CpGs appeared significant using raw p-values, only a subset remained significant after correction, emphasizing the importance of controlling false discovery rates.
+
+\vspace{0.3em}
+\noindent\textbf{Note:} In this analysis, a nominal p-value threshold of 0.05 was adopted for the initial t-tests, even though the detection p-value cutoff was set at 0.01 during the quality control phase. This nominal threshold (0.05) is a conventional standard in hypothesis testing that balances sensitivity and specificity prior to applying multiple testing corrections (BH and Bonferroni). The detection p-value cutoff (0.01), on the other hand, is used earlier in the pipeline to filter out unreliable probes and is not directly linked to the statistical threshold applied in the differential testing step.
 
 \subsection{Genome-Wide Overview}
 
