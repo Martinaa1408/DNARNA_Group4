@@ -181,7 +181,13 @@ In this project, we adopted **`preprocessFunnorm`**, which preserves biological 
 - `/supplementary_materials/` directory →
   
   `supplementary_materials_gorup4.pdf`: PDF file written in LaTeX, containing supplementary materials, including an R user manual, explanations of             functions, package references, and guidelines on how the analysis pipeline works.
+
+- `/teaching_materials/` directory →
   
+  `DNARNA-module2.pdf`: A PDF file containing all the slides for Module 2.
+  
+  `DRD_2025_html.pdf`: A PDF export of the HTML exercises from the various lessons in the module.
+
 **Download processed RGset object**:  
 [RGset.RData](https://drive.google.com/uc?export=download&id=1eIU1pHnwIDmMTmn73Zu3RdZgdcb_ZFux)
 
