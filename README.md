@@ -168,14 +168,14 @@ In this project, we adopted **`preprocessFunnorm`**, which preserves biological 
 
   `Single_linkage_heatmap.png`: Heatmap showing hierarchical clustering of samples using the single linkage method. Useful for identifying                    chaining effects and subtle relationships between samples.
 
-  `p-value_raw_adjusted_plot.png`: Visualizes raw and adjusted p-values (BH, Bonferroni) to assess the impact of multiple testing correction on significance.
+  `p-value_raw_adjusted_plot.png`: Visualizes raw and adjusted p-values (BH, Bonferroni) to assess the       impact of multiple testing correction on significance.
 
-`p-value_distribution_plot.png`: Displays the histogram of p-values from t-tests to evaluate their distribution and uniformity.
+  `p-value_distribution_plot.png`: Displays the histogram of p-values from t-tests to evaluate their         distribution and uniformity.
 
   `manhattan_plot.png`: Manhattan plot showing genome-wide –log₁₀ p-values plotted by chromosome position.
    Highlights significant differentially methylated probes and their genomic context.
 
-  `volcano_plot.png`: Volcano plot showing the relationship between effect size (delta Beta) and statistical significance (–log₁₀ p-value).
+  `volcano_plot.png`: Volcano plot showing the relationship between effect size (delta Beta) and             statistical significance (–log₁₀ p-value).
    Helps to identify probes that are both highly significant and have large effect sizes.
 
 - `/supplementary_materials/` directory →
