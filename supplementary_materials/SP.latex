@@ -155,8 +155,9 @@ DNA methylation is an epigenetic modification that occurs when a methyl group is
 \subsection*{Illumina 450K BeadChip}
 The Illumina HumanMethylation450K BeadChip enables high-throughput analysis of over 485,000 CpG sites across the genome. It uses bisulfite conversion to differentiate between methylated and unmethylated cytosines:
 \begin{itemize}
-    \item \textbf{Infinium I}: Two separate probes (one for methylated, one for unmethylated) and single-color detection.
-    \item \textbf{Infinium II}: A single probe with two-color detection to distinguish methylation status.
+    \item \textbf{Infinium I}: Utilizes two separate probes per CpG site—one specific for the methylated sequence and one for the unmethylated sequence. Each probe uses single-color detection in separate bead types.
+\item \textbf{Infinium II}: Utilizes a single probe per CpG site that hybridizes regardless of methylation status. The methylation state is distinguished using two-color detection in the same bead type.
+
 \end{itemize}
 
 \subsection*{Bisulfite Conversion}
@@ -164,32 +165,48 @@ Bisulfite treatment converts unmethylated cytosines into uracils (read as thymin
 
 
 \begin{table}[H]
-\centering
-\renewcommand{\arraystretch}{1.3}
-\setlength{\tabcolsep}{8pt}
-\begin{tabular}{@{}p{4cm} p{5.2cm} p{5.2cm}@{}}
-\toprule
-\textbf{Characteristic} & \textbf{Infinium I} & \textbf{Infinium II} \\
-\midrule
-Number of Probes & Two (one for methylated, one for unmethylated) & One (single probe detects both) \\
-Detection Channel & Single color per probe & Dual color within probe \\
-CpG Coverage & Slightly lower & Slightly higher \\
-Probe Design & Two separate bead types & One bead type \\
-Signal Intensity & Higher dynamic range & Lower dynamic range \\
-Normalization & Less dye bias, easier normalization & More dye bias, needs adjustment \\
-Dye Bias Susceptibility & Lower & Higher \\
-Interpretation & Raw signals easier to interpret & Requires correction for dye bias \\
-\bottomrule
-\end{tabular}
-\caption{Comparison of Infinium I and Infinium II chemistries on the Illumina 450K array.}
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{|p{0.25\linewidth}|p{0.35\linewidth}|p{0.35\linewidth}|}
+        \hline
+        \textbf{Characteristic} & \textbf{Infinium I} & \textbf{Infinium II} \\
+        \hline
+        Number of Probes per CpG Site & Two separate probes (one for methylated, one for unmethylated) & One single probe detects both methylated and unmethylated sequences \\
+        \hline
+        Probe Design & Two different bead types for methylated and unmethylated targets & One bead type per CpG site hybridizes regardless of methylation status \\
+        \hline
+        Single Base Extension (SBE) & Adds labeled nucleotide at the end of each probe; separate color channels (G = methylated, A = unmethylated) & Adds labeled nucleotide at the end of the single probe; both signals detected in the same color channel (G = methylated, A = unmethylated) \\
+        \hline
+        Detection Channel & Separate color channels for each probe (two colors) & Single color channel detects both methylated and unmethylated calls \\
+        \hline
+        CpG Coverage & Slightly lower overall coverage due to array space used by dual probes & Slightly higher overall coverage due to single-probe design \\
+        \hline
+        Signal Intensity and Dynamic Range & Higher dynamic range; less compression of Beta values & Lower dynamic range; more compression of Beta values \\
+        \hline
+        Dye Bias Susceptibility & Less dye bias, easier normalization & Higher dye bias, requires adjustment \\
+        \hline
+        Data Interpretation & Raw signals easier to interpret directly & Requires correction for dye bias and sequence context \\
+        \hline
+    \end{tabular}
+    \caption{Comparison of Infinium I and Infinium II probe chemistries used in Illumina DNA methylation BeadChip arrays.}
 \end{table}
+
 
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{Screenshot 2025-05-31 085041.png}
-    \caption{Example of an Illumina 450K bead chip.}
+    \caption{Overview of the Illumina Infinium HumanMethylation450 BeadChip platform. This array enables high-throughput analysis of over 485,000 methylation sites per sample at single-nucleotide resolution. It covers 99\% of RefSeq genes, targeting an average of 17 CpG sites per gene region (including promoter, 5'UTR, first exon, gene body, and 3'UTR). The platform also covers 96\% of CpG islands, as well as island shores and flanking regions. Additional features include coverage of non-CpG methylated sites (identified in human stem cells), differentially methylated sites between tumor and normal samples (multiple cancer types), CpG islands outside of coding regions, and miRNA promoter regions. These features make the platform ideal for epigenome-wide association studies (EWAS).}
 \end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{Screenshot 2025-06-09 103203.png}
+    \caption{Comparison of Infinium I and Infinium II probe designs.}
+    \label{fig:enter-label}
+\end{figure}
+
+\newpage
 
 \section{R — A Deep Dive}
 \subsection*{What is R?}
