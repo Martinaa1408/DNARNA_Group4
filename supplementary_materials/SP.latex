@@ -177,7 +177,7 @@ Bisulfite treatment converts unmethylated cytosines into uracils (read as thymin
         \hline
         Single Base Extension (SBE) & Adds labeled nucleotide at the end of each probe; separate color channels (G = methylated, A = unmethylated) & Adds labeled nucleotide at the end of the single probe; both signals detected in the same color channel (G = methylated, A = unmethylated) \\
         \hline
-        Detection Channel & Separate color channels for each probe (two colors) & Single color channel detects both methylated and unmethylated calls \\
+        Detection Channel & Single color channel detects both methylated and unmethylated & Two separate color channels for methylated and unmethylated probes \\
         \hline
         CpG Coverage & Slightly lower overall coverage due to array space used by dual probes & Slightly higher overall coverage due to single-probe design \\
         \hline
@@ -279,6 +279,7 @@ my_list <- list(Numeric = my_vector, Category = my_factor, Table = my_df)
 Understanding these data structures is essential for efficient data manipulation and analysis in R.
 
 \section{About \texttt{minfi}}
+
 The \texttt{minfi} package is a comprehensive and essential R/Bioconductor toolkit for analyzing Illumina HumanMethylation arrays (450K and EPIC). It enables efficient processing and robust analysis of DNA methylation data by providing:
 \begin{itemize}
     \item Import of raw IDAT files using \texttt{read.metharray.exp()}, supporting flexible sample sheet integration.
@@ -286,6 +287,7 @@ The \texttt{minfi} package is a comprehensive and essential R/Bioconductor toolk
     \item Preprocessing methods, including background correction and functional normalization (\texttt{preprocessFunnorm()}), to correct technical biases and batch effects.
     \item Extraction of Beta-values and M-values using \texttt{getBeta()} and \texttt{getM()}, facilitating downstream statistical testing.
 \end{itemize}
+
 Overall, \texttt{minfi} supports a complete methylation analysis workflow, from raw data import to preprocessing and quality assessment, making it an essential package for reproducible and high-quality methylation studies.
 
 \vspace{0.3cm}
@@ -296,6 +298,43 @@ Overall, \texttt{minfi} supports a complete methylation analysis workflow, from 
     \item \texttt{qqman} for generating Manhattan plots.
     \item \texttt{factoextra} for PCA visualization.
 \end{itemize}
+
+\vspace{0.5cm}
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7\linewidth]{Screenshot 2025-06-18 083903.png}
+        \caption{Flow chart of the \texttt{minfi} pipeline: data objects evolve from raw IDAT files (\texttt{RGChannelSet}) to genome-annotated methylation matrices (\texttt{GenomicRatioSet}). Each transformation adds structure and annotation, enabling quality control, normalization, and biological interpretation.}
+\end{figure}
+
+\vspace{0.2cm}
+\noindent
+Each object plays a defined role within the \texttt{minfi} pipeline:
+\begin{itemize}
+    \item \textbf{\texttt{RGChannelSet}}: Raw intensity data (red and green channels) from IDAT files, unfiltered and unprocessed.
+    \item \textbf{\texttt{MethylSet}}: Background-corrected methylated and unmethylated signals, still unmapped to the genome.
+    \item \textbf{\texttt{RatioSet}}: Includes Beta-values (methylated / total) and/or M-values (log2 ratio), useful for differential methylation analysis.
+    \item \textbf{\texttt{GenomicMethylSet}}: Like \texttt{MethylSet}, but with genome mapping information.
+    \item \textbf{\texttt{GenomicRatioSet}}: Final analysis-ready object: Beta or M-values mapped to genome coordinates, ideal for visualization and statistical testing.
+\end{itemize}
+
+\vspace{0.5cm}
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=0.7\linewidth]{Screenshot 2025-06-18 084045.png}
+        \label{fig:enter-label}
+        \caption{Comparison of preprocessing functions available in the \texttt{minfi} package. Each method takes \texttt{RGset} (raw data) as input and produces methylation-level objects (\texttt{Mset} or \texttt{GenomicRatioSet}).}
+\end{figure}
+
+\vspace{0.2cm}
+\noindent
+\textbf{Theoretical note:} Several preprocessing strategies are available within \texttt{minfi}, each tailored to different correction goals:
+\begin{itemize}
+    \item \texttt{preprocessNoob} corrects background and dye bias (single-sample method).
+    \item \texttt{preprocessSWAN} adjusts for probe type bias between Infinium I and II probes.
+    \item \texttt{preprocessQuantile} equalizes the distribution across samples, often used in general omics.
+    \item \texttt{preprocessFunnorm} uses internal control probes to remove unwanted variation while preserving biological signal — this was the method used in our analysis.
+\end{itemize}
+
 
 \section{Project Data}
 For this project, we analyzed DNA methylation data from the Illumina HumanMethylation450K array. Below is a summary of the key files and data objects used in the analysis:
