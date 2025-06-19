@@ -62,7 +62,7 @@ This repository contains the DNA methylation analysis performed by **Group 4** f
 
 ### `/outputs/` — Results & Visualizations
 
-#### Quality Control & Intensity
+#### QC & Intensity
 - `Density_plot.png`: Density distribution of beta values or intensities.
 - `qc_plot_msetraw.png`: Raw MSet data distribution before normalization.
 - `raw_vs_normalized.plot.png`: Scatter plot comparing raw vs normalized values.
@@ -70,7 +70,7 @@ This repository contains the DNA methylation analysis performed by **Group 4** f
 - `df_address.pdf`: Sample plate addresses for QC.
 - `df_failed.pdf`: Summary of failed or excluded samples.
 
-#### PCA 
+#### PCA
 - `PCA_batch_plot.png`: PCA plot colored by batch.
 - `PCA_groups_plot.png`: PCA plot colored by experimental group (e.g., CTRL/DIS).
 - `PCA_sex_plot.png`: PCA plot colored by sex (Female/Male).
@@ -81,7 +81,7 @@ This repository contains the DNA methylation analysis performed by **Group 4** f
 - `Complete_linkage_heatmap.png`: Heatmap with complete linkage clustering.
 - `Single_linkage_heatmap.png`: Heatmap with single linkage clustering.
 
-#### Statistical Analysis
+#### Statistics
 - `p-value_distribution_plot.png`: Histogram of raw p-values (t-tests).
 - `p-value_distribution_raw_adjusted_plot.png`: Comparison of raw and adjusted p-values (BH, Bonferroni).
 - `manhattan_plot.png`: Manhattan plot of –log₁₀ p-values across genomic positions.
