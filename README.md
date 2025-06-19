@@ -2,13 +2,14 @@
 
 ## Table of Contents
 - [Project Overview](#project-overview)
-- [Group Members](#group-members)
 - [Assigned Parameters](#assigned-parameters)
 - [Tools and Technologies](#tools-and-technologies)
 - [Repository Structure](#repository-structure)
 - [Workflow Summary](#workflow-summary)
 - [Resources and References](#resources-and-references)
 - [License](#license)
+- [Contact](#contact)
+  
 ---
 
 ## Project Overview
@@ -17,18 +18,6 @@ This repository contains the DNA methylation analysis developed by **Group 4** f
 The project investigates genome-wide CpG methylation patterns using data from the Illumina HumanMethylation450K BeadChip, with the goal of identifying methylation changes associated with disease. The analysis, entirely performed in R using Bioconductor packages, integrates statistical testing, quality control, and biological interpretation.
 
 Designed as both a scientific case study and an educational exercise, the repository provides a reproducible framework for exploring epigenetic variation and its potential role in disease mechanisms.
-
----
-
-## Group Members
-
-- Andrea Pusiol — andrea.pusiol@studenti.unibo.it
-- Aurora Mazzoni — aurora.mazzoni2@studenti.unibo.it
-- Martina Castellucci — martina.castellucci@studenti.unibo.it
-- Alessia Corica — alessia.corica@studenti.unibo.it
-- Sofia Natale — sofia.natale@studenti.unibo.it
-- Bianca Mastroddi — bianca.mastroddi@studenti.unibo.it
-- Perla Lucaboni — perla.lucaboni@studenti.unibo.it
 
 ---
 
@@ -168,9 +157,21 @@ image..
 This project is licensed under the MIT License.  
 See the [LICENSE](LICENSE) file for more details.
 
+---
 
+## Contact
 
+For questions, feedback, or reproducibility concerns, feel free to reach out to the project members:
 
+- Martina Castellucci — [martina.castellucci@studenti.unibo.it](mailto:martina.castellucci@studenti.unibo.it)  
+- Alessia Corica — [alessia.corica@studenti.unibo.it](mailto:alessia.corica@studenti.unibo.it)  
+- Sofia Natale — [sofia.natale@studenti.unibo.it](mailto:sofia.natale@studenti.unibo.it)  
+- Andrea Pusiol — [andrea.pusiol@studenti.unibo.it](mailto:andrea.pusiol@studenti.unibo.it)  
+- Perla Lucaboni — [perla.lucaboni@studenti.unibo.it](mailto:perla.lucaboni@studenti.unibo.it)  
+- Aurora Mazzoni — [aurora.mazzoni2@studenti.unibo.it](mailto:aurora.mazzoni2@studenti.unibo.it)  
+- Bianca Mastroddi — [bianca.mastroddi@studenti.unibo.it](mailto:bianca.mastroddi@studenti.unibo.it)
 
-> _This repository documents a reproducible methylation analysis workflow combining theoretical insights and practical bioinformatics skills, tailored for CTRL vs DIS comparisons._
+---
+
+> _This repository documents a reproducible methylation analysis workflow combining theoretical insights and practical bioinformatics skills._
 
