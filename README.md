@@ -50,74 +50,62 @@ This repository contains the DNA methylation analysis performed by **Group 4** f
 
 ## Repository Structure
 
-- `/input_data/`directory →
-  
-   16 `.idat files` (red and green channels): Raw data files containing the intensities of probes for each sample in the red and green
-   fluorescence channels, required for downstream preprocessing and analysis.
-  
-  `SampleSheet_Report_II.csv`: CSV file containing metadata about the samples (e.g., sample IDs, groups, batch information) and their cor-
-   responding .idat files; used by the pipeline to associate data with sample annotations.
-  
-- `/scripts/` directory →
-  
-  `pipeline_group4.R`: R script containing the main analysis pipeline, including data preprocessing, normalization, PCA, quality control,
-   and plotting.
-  
-  `report.html`: HTML report automatically generated from the pipeline, summarizing the analysis results with interactive visualizations
-   and tables.
-  
-- `/outputs/` directory →
+### `/Input_data/` — Raw Data & Metadata
+- `*.idat` (16 files): Red and green channel raw data files containing probe intensities per sample.
+- `SampleSheet_Report_II.csv`: Sample metadata including IDs, experimental groups, batch information, and corresponding .idat file references.
 
-  `Density_plot.png`: Density plot showing the distribution of beta values (or intensity values) for quality control and detection of potential               outliers.
+---
 
-  `Green_Fluorescences_Table.yaml`: YAML file containing tabular data of green channel fluorescence intensities for each sample.
+### `/scripts/` — Main Pipeline & Report
+- `pipeline_group4.R`: Main R script executing the entire workflow.
+- `report.html`: Auto-generated interactive HTML report summarizing results with plots and tables.
 
-  `PCA_batch_plot.png`: PCA plot with samples colored by batch to identify potential batch effects.
+---
 
-  `PCA_groups_plot.png`: PCA plot with samples colored by experimental group (e.g., CTRL/DIS) to identify clustering patterns.
+### `/outputs/` — Results & Visualizations
 
-  `PCA_sex_plot.png`: PCA plot with samples colored by sex (e.g., Female/Male) to evaluate sex-related effects in the data.
+#### Quality Control & Intensity
+- `Density_plot.png`: Density distribution of beta values or intensities.
+- `qc_plot_msetraw.png`: Raw MSet data distribution before normalization.
+- `raw_vs_normalized.plot.png`: Scatter plot comparing raw vs normalized values.
+- `negative_control_intensity_check.png`: Background control plot using negative probes.
+- `df_address.pdf`: Sample plate addresses for QC.
+- `df_failed.pdf`: Summary of failed or excluded samples.
 
-  `Red_Fluorescences_Table.yaml`: YAML file containing tabular data of red channel fluorescence intensities for each sample.
+#### PCA 
+- `PCA_batch_plot.png`: PCA plot colored by batch.
+- `PCA_groups_plot.png`: PCA plot colored by experimental group (e.g., CTRL/DIS).
+- `PCA_sex_plot.png`: PCA plot colored by sex (Female/Male).
+- `scree_plot.png`: Scree plot showing explained variance per principal component.
 
-  `df_address.pdf`: PDF table listing the physical addresses (sample positions) on the plate for quality control and troubleshooting.
+#### Clustering
+- `Average_linkage_heatmap.png`: Heatmap with average linkage clustering.
+- `Complete_linkage_heatmap.png`: Heatmap with complete linkage clustering.
+- `Single_linkage_heatmap.png`: Heatmap with single linkage clustering.
 
-  `df_failed.pdf`: PDF table summarizing failed or excluded samples from the analysis.
+#### Statistical Analysis
+- `p-value_distribution_plot.png`: Histogram of raw p-values (t-tests).
+- `p-value_distribution_raw_adjusted_plot.png`: Comparison of raw and adjusted p-values (BH, Bonferroni).
+- `manhattan_plot.png`: Manhattan plot of –log₁₀ p-values across genomic positions.
+- `volcano_plot.png`: Volcano plot of ΔBeta vs –log₁₀ p-value (effect size vs significance).
 
-  `negative_control_intensity_check.png`: Plot showing negative control intensities to evaluate assay specificity and background levels.
+#### Fluorescence Tables
+- `Green_Fluorescences_Table.yaml`: Green channel intensities by sample.
+- `Red_Fluorescences_Table.yaml`: Red channel intensities by sample.
 
-  `qc_plot_msetraw.png`: Quality control plot showing raw data distributions (MSet raw) before normalization.
+---
 
-  `raw_vs_normalized.plot.png`: Scatter plot comparing raw versus normalized values to assess the effectiveness of normalization.
+### `/diagram_workflow/` — Workflow Overview
+- `workflow.png`: Diagram illustrating the main steps of the DNA methylation analysis pipeline, from raw data input to final output and visualization.
 
-  `scree_plot.png`: Scree plot showing the variance explained by each principal component to help select the optimal number of components.
+---
 
-  `Average_linkage_heatmap.png`: Heatmap showing the hierarchical clustering of samples using the average linkage method. Highlights patterns of              similarity and potential group separation.
+### `/report_pipeline/` — Report Guidelines
+- `20250605_Report_pipeline_FINAL.pdf`: Document containing the professor’s official instructions and structure for writing the final project report.
 
-  `Complete_linkage_heatmap.png`: Heatmap showing hierarchical clustering of samples using the complete linkage method. This method tends to produce
-   more compact clusters, helping to identify tight groupings and potential subclusters.
+---
 
-  `Single_linkage_heatmap.png`: Heatmap showing hierarchical clustering of samples using the single linkage method. Useful for identifying                    chaining effects and subtle relationships between samples.
-
-  `p-value_distribution_raw_adjusted_plot.png`: Visualizes raw and adjusted p-values (BH, Bonferroni) to assess the       impact of multiple testing correction on significance.
-
-  `p-value_distribution_plot.png`: Displays the histogram of p-values from t-tests to evaluate their         distribution and uniformity.
-
-  `manhattan_plot.png`: Manhattan plot showing genome-wide –log₁₀ p-values plotted by chromosome position.
-   Highlights significant differentially methylated probes and their genomic context.
-
-  `volcano_plot.png`: Volcano plot showing the relationship between effect size (delta Beta) and             statistical significance (–log₁₀ p-value).
-   Helps to identify probes that are both highly significant and have large effect sizes.
-
-- `/supplementary_materials/` directory →
-  
-  `supplementary_materials_group4.pdf`: PDF file written in LaTeX, containing supplementary materials, including an R user manual, explanations of             functions, package references, and guidelines on how the analysis pipeline works.
-
-- `/teaching_materials/` directory →
-  
-  `DNARNA-module2.pdf`: A PDF file containing all the slides for Module 2.
-  
-  `DRD_2025_html.pdf`: A PDF export of the HTML exercises from the various lessons in the module.
+- `DNAmethylation_analysis_manual.pdf`: Manual (LaTeX) including R usage guide, function descriptions, package references, and pipeline instructions.
 
 **Download processed RGset object**:  
 [RGset.RData](https://drive.google.com/uc?export=download&id=1eIU1pHnwIDmMTmn73Zu3RdZgdcb_ZFux)
