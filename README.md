@@ -8,7 +8,7 @@
 - [Repository Structure](#repository-structure)
 - [Workflow Summary](#workflow-summary)
 - [Resources and References](#resources-and-references)
-
+- [License](#license)
 ---
 
 ## Project Overview
@@ -162,6 +162,15 @@ image..
 
 
 ---
+
+## License
+
+This project is licensed under the MIT License.  
+See the [LICENSE](LICENSE) file for more details.
+
+
+
+
 
 > _This repository documents a reproducible methylation analysis workflow combining theoretical insights and practical bioinformatics skills, tailored for CTRL vs DIS comparisons._
 
