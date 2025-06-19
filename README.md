@@ -105,7 +105,7 @@ This repository contains the DNA methylation analysis performed by **Group 4** f
 
 ---
 
-- `DNAmethylation_analysis_manual.pdf`: Manual (LaTeX) including R usage guide, function descriptions, package references, and pipeline instructions.
+`DNAmethylation_analysis_manual.pdf`: Manual (LaTeX) including R usage guide, function descriptions, package references, and pipeline instructions.
 
 **Download processed RGset object**:  
 [RGset.RData](https://drive.google.com/uc?export=download&id=1eIU1pHnwIDmMTmn73Zu3RdZgdcb_ZFux)
@@ -113,8 +113,6 @@ This repository contains the DNA methylation analysis performed by **Group 4** f
 ---
 
 ## Workflow Summary
-
-<img src="figures/Workflow.png" alt="DNA Methylation Analysis Workflow" width="280"/>
 
 
 1. **Data Import**  
