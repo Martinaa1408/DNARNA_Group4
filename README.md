@@ -19,13 +19,13 @@ This repository contains the DNA methylation analysis performed by **Group 4** f
 
 ## Group Members
 
-- Andrea Pusiol  
-- Aurora Mazzoni  
-- Martina Castellucci  
-- Alessia Corica  
-- Sofia Natale  
-- Bianca Mastroddi  
-- Perla Lucaboni
+- Andrea Pusiol — andrea.pusiol@studenti.unibo.it
+- Aurora Mazzoni — aurora.mazzoni2@studenti.unibo.it
+- Martina Castellucci — martina.castellucci@studenti.unibo.it
+- Alessia Corica — alessia.corica@studenti.unibo.it
+- Sofia Natale — sofia.natale@studenti.unibo.it
+- Bianca Mastroddi — bianca.mastroddi@studenti.unibo.it
+- Perla Lucaboni — perla.lucaboni@studenti.unibo.it
 
 ---
 
