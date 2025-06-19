@@ -54,13 +54,11 @@ This repository contains the DNA methylation analysis performed by **Group 4** f
 - `*.idat` (16 files): Red and green channel raw data files containing probe intensities per sample.
 - `SampleSheet_Report_II.csv`: Sample metadata including IDs, experimental groups, batch information, and corresponding .idat file references.
 
----
 
 ### `/scripts/` — Main Pipeline & Report
 - `pipeline_group4.R`: Main R script executing the entire workflow.
 - `report.html`: Auto-generated interactive HTML report summarizing results with plots and tables.
 
----
 
 ### `/outputs/` — Results & Visualizations
 
@@ -93,17 +91,14 @@ This repository contains the DNA methylation analysis performed by **Group 4** f
 - `Green_Fluorescences_Table.yaml`: Green channel intensities by sample.
 - `Red_Fluorescences_Table.yaml`: Red channel intensities by sample.
 
----
 
 ### `/diagram_workflow/` — Workflow Overview
 - `workflow.png`: Diagram illustrating the main steps of the DNA methylation analysis pipeline, from raw data input to final output and visualization.
 
----
 
 ### `/report_pipeline/` — Report Guidelines
 - `20250605_Report_pipeline_FINAL.pdf`: Document containing the professor’s official instructions and structure for writing the final project report.
 
----
 
 `DNAmethylation_analysis_manual.pdf`: Manual (LaTeX) including R usage guide, function descriptions, package references, and pipeline instructions.
 
