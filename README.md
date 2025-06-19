@@ -7,7 +7,6 @@
 - [Tools and Technologies](#tools-and-technologies)
 - [Repository Structure](#repository-structure)
 - [Workflow Summary](#workflow-summary)
-- [Motivation and Rationale](#motivation-and-rationale)
 - [Resources and References](#resources-and-references)
 
 ---
@@ -110,16 +109,6 @@ This repository contains the DNA methylation analysis performed by **Group 4** f
 ## Workflow Summary
 
 image..
-
----
-
-## Motivation and Rationale
-
-This workflow ensures:
-- Rigorous probe filtering using detection p-values.
-- Correction for probe-type bias with Funnorm.
-- Reproducible identification of biologically meaningful DMPs.
-- Comprehensive visualization of results to facilitate interpretation.
 
 ---
 
