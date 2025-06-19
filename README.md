@@ -12,7 +12,9 @@
 ---
 
 ## Project Overview
-This repository contains the DNA methylation analysis performed by **Group 4** for the *DNA/RNA Dynamics* course (Module 2, Prof. Francesco Ravaioli), MSc in Bioinformatics – University of Bologna. The project aims to identify differentially methylated positions (DMPs) between **control (CTRL)** and **disease (DIS)** samples using the Illumina HumanMethylation450K array and the `minfi` R package.
+This repository contains the DNA methylation analysis developed by **Group 4** for the *DNA/RNA Dynamics* course (Module 2, Prof. Francesco Ravaioli), MSc in Bioinformatics – University of Bologna.
+The project investigates genome-wide CpG methylation patterns using data from the Illumina HumanMethylation450K BeadChip, with the goal of identifying methylation changes associated with disease. The analysis, entirely performed in R using Bioconductor packages, integrates statistical testing, quality control, and biological interpretation.
+Designed as both a scientific case study and an educational exercise, the repository provides a reproducible framework for exploring epigenetic variation and its potential role in disease mechanisms.
 
 ---
 
