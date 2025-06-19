@@ -125,8 +125,41 @@ This workflow ensures:
 
 ## Resources and References
 
-- [`minfi` – Bioconductor package](https://bioconductor.org/packages/release/bioc/html/minfi.html)  
-  An R/Bioconductor package for Illumina methylation array analysis, including preprocessing, normalization, and differential methylation detection.
+- #%% md
+#### Installing packages – brief description and references
+
+- **BiocManager**  
+  Used to install and manage packages from the Bioconductor project.  
+  📖 Vignette: [BiocManager Vignette](https://cran.r-project.org/web/packages/BiocManager/vignettes/BiocManager.html)  
+  📚 Citation:  
+  Shepherd L. (2024). *BiocManager: Access the Bioconductor Project Package Repository*. R package version 1.30.22.
+
+- **minfi**  
+  Core package for analyzing Illumina 450K/EPIC methylation arrays. Includes preprocessing, QC, DMP analysis, and visualization tools.  
+  Vignette: [minfi Vignette](https://bioconductor.org/packages/release/bioc/vignettes/minfi/inst/doc/minfi.html)  
+  Citation: Aryee, M. J., et al. (2014). *Minfi: a flexible and comprehensive Bioconductor package for the analysis of Infinium DNA methylation              microarrays*. Bioinformatics, 30(10), 1363–1369. DOI: [10.1093/bioinformatics/btu049](https://doi.org/10.1093/bioinformatics/btu049)
+
+- **Illumina 450K Manifest**  
+  CSV annotation file for probe IDs, positions, and types on the 450K array.  
+  Documentation: [Illumina Manifest Column Headings](https://support.illumina.com/bulletins/2016/05/infinium-methylationk-manifest-column-headings.html)
+
+- **factoextra**  
+  Simplifies extraction and visualization of multivariate analyses (e.g., PCA).  
+  Documentation: [factoextra Website](https://rpkgs.datanovia.com/factoextra/index.html)  
+  Citation:  
+  Kassambara, A. (2020). *factoextra: Extract and Visualize the Results of Multivariate Data Analyses*. R package version 1.0.7.
+
+- **qqman**  
+  Produces Manhattan and Q-Q plots, primarily used in GWAS and EWAS visualizations.  
+  Vignette: [qqman Vignette](https://cran.r-project.org/web/packages/qqman/vignettes/qqman.html)  
+  Citation:  
+  Turner, S. D. (2014). *qqman: an R package for visualizing GWAS results using Q-Q and Manhattan plots*. bioRxiv. DOI: [10.1101/005165]                     (https://doi.org/10.1101/005165)
+
+- **gplots**  
+  Offers plotting tools including `heatmap.2()` for hierarchical clustering and visualizations.  
+  CRAN Page: [gplots on CRAN](https://cran.r-project.org/web/packages/gplots/index.html)  
+  Citation:  
+  Warnes, G. R., et al. (2022). *gplots: Various R Programming Tools for Plotting Data*. R package version 3.1.3.
 
 - [Illumina 450K Product Files](https://support.illumina.com/downloads/infinium_humanmethylation450_product_files.html)  
   Official documentation and downloads: manifest files, annotation files, and sample sheets.
@@ -135,7 +168,7 @@ This workflow ensures:
   Detailed technical overview: probe design, detection chemistry, and array performance.
 
 - [minfi::preprocessFunnorm() function](https://www.rdocumentation.org/packages/minfi/versions/1.18.4/topics/preprocessFunnorm)
-Official documentation describing how to apply functional normalization to Illumina HumanMethylation arrays.
+  Official documentation describing how to apply functional normalization to Illumina HumanMethylation arrays.
 
 ---
 
