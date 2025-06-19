@@ -136,10 +136,6 @@ This workflow ensures:
   Vignette: [minfi Vignette](https://bioconductor.org/packages/release/bioc/vignettes/minfi/inst/doc/minfi.html)  
   Citation: Aryee, M. J., et al. (2014). *Minfi: a flexible and comprehensive Bioconductor package for the analysis of Infinium DNA methylation              microarrays*. Bioinformatics, 30(10), 1363–1369. DOI: [10.1093/bioinformatics/btu049](https://doi.org/10.1093/bioinformatics/btu049)
 
-- **Illumina 450K Manifest**  
-  CSV annotation file for probe IDs, positions, and types on the 450K array.  
-  Documentation: [Illumina Manifest Column Headings](https://support.illumina.com/bulletins/2016/05/infinium-methylationk-manifest-column-headings.html)
-
 - **factoextra**  
   Simplifies extraction and visualization of multivariate analyses (e.g., PCA).  
   Documentation: [factoextra Website](https://rpkgs.datanovia.com/factoextra/index.html)  
@@ -158,14 +154,19 @@ This workflow ensures:
   Citation:  
   Warnes, G. R., et al. (2022). *gplots: Various R Programming Tools for Plotting Data*. R package version 3.1.3.
 
-- [Illumina 450K Product Files](https://support.illumina.com/downloads/infinium_humanmethylation450_product_files.html)  
-  Official documentation and downloads: manifest files, annotation files, and sample sheets.
+- **Illumina 450K Product Files**  
+  Official documentation and downloads: manifest files, annotation files, control probe info, and sample    sheets.  
+  [support.illumina.com – Product Files](https://support.illumina.com/downloads/infinium_humanmethylation450_product_files.html)
 
-- [Infinium HumanMethylation450 BeadChip – Datasheet (PDF)](https://www.illumina.com/content/dam/illumina-marketing/documents/products/datasheets/datasheet_humanmethylation450.pdf)  
-  Detailed technical overview: probe design, detection chemistry, and array performance.
+- **Infinium HumanMethylation450 BeadChip – Datasheet (PDF)**  
+  Technical summary of the 450K array platform, including probe design, detection chemistry, and assay      performance metrics.  
+  [Download Datasheet](https://www.illumina.com/content/dam/illumina-marketing/documents/products/datasheets/datasheet_humanmethylation450.pdf)
 
-- [minfi::preprocessFunnorm() function](https://www.rdocumentation.org/packages/minfi/versions/1.18.4/topics/preprocessFunnorm)
-  Official documentation describing how to apply functional normalization to Illumina HumanMethylation arrays.
+- **`minfi::preprocessFunnorm()`**  
+  Official function documentation describing how to apply **functional normalization** to                   HumanMethylation arrays using internal control probes.  
+  Reduces unwanted technical variation while preserving biological signals.  
+  [Function Reference](https://www.rdocumentation.org/packages/minfi/versions/1.18.4/topics/preprocessFunnorm)
+
 
 ---
 
