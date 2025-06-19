@@ -125,13 +125,10 @@ This workflow ensures:
 
 ## Resources and References
 
-- #%% md
-#### Installing packages – brief description and references
-
 - **BiocManager**  
   Used to install and manage packages from the Bioconductor project.  
-  📖 Vignette: [BiocManager Vignette](https://cran.r-project.org/web/packages/BiocManager/vignettes/BiocManager.html)  
-  📚 Citation:  
+  Vignette: [BiocManager Vignette](https://cran.r-project.org/web/packages/BiocManager/vignettes/BiocManager.html)  
+  Citation:  
   Shepherd L. (2024). *BiocManager: Access the Bioconductor Project Package Repository*. R package version 1.30.22.
 
 - **minfi**  
