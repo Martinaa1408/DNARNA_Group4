@@ -48,24 +48,24 @@ Designed as both a scientific case study and an educational exercise, the reposi
 
 
 ### `/scripts/` — Main Pipeline & Report
-- `pipeline_group4.R`: Main R script executing the entire workflow.
-- `report.html`: Auto-generated interactive HTML report summarizing results with plots and tables.
+- `final_script.R`: Main R script executing the entire workflow.
+- `report_group4.html`: Auto-generated interactive HTML report summarizing results with plots and tables.
 
 
 ### `/outputs/` — Results & Visualizations
 
 #### QC & Intensity
 - `Density_plot.png`: Density distribution of beta values or intensities.
-- `qc_plot_msetraw.png`: Raw MSet data distribution before normalization.
-- `raw_vs_normalized.plot.png`: Scatter plot comparing raw vs normalized values.
-- `negative_control_intensity_check.png`: Background control plot using negative probes.
+- `qc_plot.png`: Raw MSet data distribution before normalization.
+- `Raw_normalised_beta.plot.png`: Scatter plot comparing raw vs normalized values.
+- `controlStripPlot.png`: Background control plot using negative probes.
 - `df_address.pdf`: Sample plate addresses for QC.
 - `df_failed.pdf`: Summary of failed or excluded samples.
 
 #### PCA
-- `PCA_batch_plot.png`: PCA plot colored by batch.
-- `PCA_groups_plot.png`: PCA plot colored by experimental group (e.g., CTRL/DIS).
-- `PCA_sex_plot.png`: PCA plot colored by sex (Female/Male).
+- `PCA_batch.png`: PCA plot colored by batch.
+- `PCA_groups.png`: PCA plot colored by experimental group (e.g., CTRL/DIS).
+- `PCA_sex.png`: PCA plot colored by sex (Female/Male).
 - `scree_plot.png`: Scree plot showing explained variance per principal component.
 
 #### Clustering
@@ -74,8 +74,8 @@ Designed as both a scientific case study and an educational exercise, the reposi
 - `Single_linkage_heatmap.png`: Heatmap with single linkage clustering.
 
 #### Statistics
-- `p-value_distribution_plot.png`: Histogram of raw p-values (t-tests).
-- `p-value_distribution_raw_adjusted_plot.png`: Comparison of raw and adjusted p-values (BH, Bonferroni).
+- `Histogram_pvalues.png`: Histogram of raw p-values (t-tests).
+- `Boxplot_corrections.png`: Comparison of raw and adjusted p-values (BH, Bonferroni).
 - `manhattan_plot.png`: Manhattan plot of –log₁₀ p-values across genomic positions.
 - `volcano_plot.png`: Volcano plot of ΔBeta vs –log₁₀ p-value (effect size vs significance).
 
