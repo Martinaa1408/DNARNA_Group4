@@ -55,9 +55,9 @@ Designed as both a scientific case study and an educational exercise, the reposi
 ### `/outputs/` — Results & Visualizations
 
 #### QC & Intensity
-- `Density_plot.png`: Density distribution of beta values or intensities.
+- `beta_m_values.png`: Distribution of Beta and M values (CTRL vs DIS).
 - `qc_plot.png`: Raw MSet data distribution before normalization.
-- `Raw_normalised_beta.plot.png`: Scatter plot comparing raw vs normalized values.
+- `Raw_normalised_beta.plot.png`: Comparison of raw vs normalized values (mean, SD, boxplot).
 - `controlStripPlot.png`: Background control plot using negative probes.
 - `df_address.pdf`: Sample plate addresses for QC.
 - `df_failed.pdf`: Summary of failed or excluded samples.
