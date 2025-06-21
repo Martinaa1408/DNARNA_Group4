@@ -36,7 +36,7 @@ Designed as both a scientific case study and an educational exercise, the reposi
 
 - **Language**: R  
 - **Platform**: Illumina HumanMethylation450K  
-- **Packages**: `minfi`, `BiocManager`, `gplots`, `factoextra`, `qqman`
+- **Packages**: `minfi`, `BiocManager`, `gplots`, `factoextra`, `qqman`, `genefilter`
 
 ---
 
