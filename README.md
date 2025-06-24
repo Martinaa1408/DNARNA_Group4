@@ -139,7 +139,7 @@ image..
 
 - **genefilter**
   Bioconductor package for high-throughput filtering and statistical testing.
-  https://bioconductor.riken.jp/packages/3.8/bioc/html/genefilter.html 
+  (genefilter)[https://bioconductor.riken.jp/packages/3.8/bioc/html/genefilter.html]
 
 - **Illumina 450K Product Files**  
   Official documentation and downloads: manifest files, annotation files, control probe info, and sample    sheets.  
