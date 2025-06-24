@@ -137,6 +137,10 @@ image..
   Citation:  
   Warnes, G. R., et al. (2022). *gplots: Various R Programming Tools for Plotting Data*. R package version 3.1.3.
 
+- **genefilter**
+  Bioconductor package for high-throughput filtering and statistical testing.
+  [genefilter methods for filtering genes from high-throughput](experimentshttps://bioconductor.riken.jp/packages/3.8/bioc/html/genefilter.html)
+
 - **Illumina 450K Product Files**  
   Official documentation and downloads: manifest files, annotation files, control probe info, and sample    sheets.  
   [support.illumina.com – Product Files](https://support.illumina.com/downloads/infinium_humanmethylation450_product_files.html)
