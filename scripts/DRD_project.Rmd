@@ -26,17 +26,21 @@ library(knitr)
 ```
 
 Clear the environment ad set working directory
+Please insert your directory inside the directory variable 
 
 ```{r}
 rm(list = ls())
-setwd("C:/Users/coric/Desktop/1 YEAR/2 SEMESTER/DNA-RNA/PROGETTO/Final_Report-20250526/")
+directory = "C:/Users/aurim/Documents/Università/4anno/DNA_RNA_dynamics/Final_Report-20250529" #insert here your directory
+setwd(directory)
 ```
 
 Load sample sheet
 
 ```{r}
-baseDir <- ("C:/Users/coric/Desktop/1 YEAR/2 SEMESTER/DNA-RNA/PROGETTO/Final_Report-20250526/")
+baseDir <- (directory)
 targets <- read.metharray.sheet(baseDir)
+print(paste("Number of found samples: ", nrow(targets))) #verify it is 8 samples
+#note: for every sample we have: SampleID, Sex, Group, Sentrix_ID, Sentrix_Position
 ```
 
 Read and save data
@@ -50,7 +54,7 @@ save(RGset, file = "RGset.RData")
 
 ```{r, results='hide'}
 Red <- data.frame(getRed(RGset))
-dim(Red)
+dim(Red)# Shows number of probes (rows) and samples (columns)
 head(Red)
 
 Green <- data.frame(getGreen(RGset))
@@ -60,6 +64,7 @@ head(Green)
 
 **3. Fill the following table**: what are the Red and Green fluorescences for the address assigned to your group?\
 Optional: check in the manifest file if the address corresponds to a Type I or a Type II probe and, in case of Type I probe, report its color.\
+\
 Set the address of interest
 
 ```{r}
@@ -71,15 +76,51 @@ Extract fluorescence values for the selected probe
 ```{r}
 probe_red <- Red[address, ]
 probe_green <- Green[address, ]
+print(probe_red)
+print(probe_green)
 ```
 
 Load cleaned manifest and check probe type
 
 ```{r}
-load("C:/Users/coric/Desktop/1 YEAR/2 SEMESTER/DNA-RNA/PROGETTO/Final_Report-20250526/Illumina450Manifest_clean.RData")
+load(file.path(directory, "Illumina450Manifest_clean.RData"))
+```
 
-Illumina450Manifest_clean[Illumina450Manifest_clean$AddressB_ID=="44666390",'Infinium_Design_Type']
-df_address <- data.frame(Sample=colnames(probe_green), Red_fluor=unlist(probe_red, use.names = FALSE ), Green_fluor=unlist(probe_green, use.names = FALSE), Type = "I")
+Check if the address is in AddressA_ID or AddressB_ID
+
+```{r}
+type_A <- Illumina450Manifest_clean[Illumina450Manifest_clean$AddressA_ID == "44666390", 'Infinium_Design_Type']
+type_B <- Illumina450Manifest_clean[Illumina450Manifest_clean$AddressB_ID == "44666390", 'Infinium_Design_Type']
+```
+
+Display results
+
+```{r}
+print("Type from AddressA_ID:")
+print(type_A)
+print("Type from AddressB_ID:")
+print(type_B)
+```
+
+Determine the actual type 
+
+```{r}
+actual_type <- ifelse(length(type_A) > 0 && !is.na(type_A), type_A, 
+                      ifelse(length(type_B) > 0 && !is.na(type_B), type_B, "Not found"))
+print("Type of address:")
+print(actual_type)
+```
+
+Create a summary dataframe for the selected address
+
+```{r}
+df_address <- data.frame(
+  Sample = colnames(probe_green),
+  Red_fluor = unlist(probe_red, use.names = FALSE),
+  Green_fluor = unlist(probe_green, use.names = FALSE),
+  Type = actual_type  # Use the actual type found
+)
+
 knitr::kable(
   df_address,
   col.names = c("Sample", "Red fluor", "Green fluor", "Type"),
@@ -89,11 +130,16 @@ knitr::kable(
 
 **4. Create the object MSet.raw**
 
+Convert the RGChannelSet to an MSet object using preprocessRaw
+
 ```{r, message=FALSE, warning=FALSE, results='hide'}
+BiocManager::install("IlluminaHumanMethylation450kmanifest")
 MSet.raw <- preprocessRaw(RGset)
 MSet.raw
-save(MSet.raw,file="MSet_raw.RData")
+save(MSet.raw, file="MSet_raw.RData")
 ```
+This function takes the Red and the Green channel of an Illumina methylation array, together with its associated manifest object and converts it into a MethylSet containing the methylated and unmethylated signal.
+
 
 **5. Perform the following quality checks and provide a brief comment to each step:**
 
@@ -103,7 +149,7 @@ save(MSet.raw,file="MSet_raw.RData")
 
 -   **calculate detection p-values for each sample, how many probes have a detection p-value higher than the threshold of 0.01?**
 
-QCplot
+*QCplot*
 
 ```{r, message=FALSE, warning=FALSE, results='hide'}
 qc <- getQC(MSet.raw)
@@ -113,22 +159,36 @@ qc
 ```{r}
 plotQC(qc)
 ```
+\
+In a QCplot, samples methylation and unmethylation median signals are plotted. Good quality samples are identified in the upper-right section of the graph. \
+Samples 1,3,8 are found slightly outside the threshold line, while samples 2 and 5 raise more concerns as they are far from optimal. \
+\
 
-Check the intensity of negative controls using minfi
+*Check the intensity of negative controls using minfi*
 
 ```{r, message=FALSE, warning=FALSE}
 controlStripPlot(RGset, controls="NEGATIVE")
 ```
+\
+In this plot are reported the intensity levels of the control probes.\
+All sample controls display intensities that are below 10, which is to be expected.
+\
+\
 
-calculate detection p-values for each sample, how many probes have a detection p-value higher than the threshold of 0.01?
+
+*Calculate detection p-values for each sample, how many probes have a detection p-value higher than the threshold of 0.01?*
 
 ```{r}
 threshold <- 0.01
 detP <- detectionP(RGset)
-failed <- detP> threshold
+failed <- detP > threshold
+num_failed <- colSums(failed)
+df_failed <- data.frame(
+  Sample = colnames(probe_green),
+  Failed_Position = num_failed,
+  perc_failed_probes = colMeans(failed) * 100
+)
 
-num_failed = colSums(failed)
-df_failed <- data.frame(Sample=colnames(probe_green), Failed_Position=num_failed, perc_failed_probes=(means_of_columns <- colMeans(failed))*100, row.names = NULL)
 
 knitr::kable(
   df_failed,
@@ -138,8 +198,19 @@ knitr::kable(
 )
 
 ```
+\
+Here are plotted all samples that failed the significance test, as their p-value was over the set  threshold (0.01%). This means that the signal captured by these probes cannot be distinguished from noise. From this dataframe is possible to highlight 4 different categories:\
+-   High quality: sample 1 and 7 (less than 0.01% failed probes)\
+-   Good quality: sample 2,4 and 6 (less than 0.2% failed probes)\
+-   Low quality: sample 3 and 8 (above 0.2% failed probes)\
+-   Critical: sample 5 (nearly 1% of failed probes)
+\
+Given the results it might be appropriate to exclude sample 5 from the research, since it failed the QCplot and it possesses a considerable amount of failed probes.
+\
 
+\
 **6. Calculate raw beta and M values and plot the densities of mean methylation values, dividing the samples in WT and MUT (suggestion: subset the beta and M values matrixes in order to retain WT or MUT subjects and apply the function mean to the 2 subsets). Do you see any difference between the two groups?**\
+\
 Select groups (CTRL and DIS) from targets
 
 ```{r}
@@ -161,11 +232,11 @@ cat("CTRL samples:", ctrl, "\n")
 cat("DIS samples:", dis, "\n")
 ```
 
-Suset the MSet object by groups
+Subset the MSet object by groups
 
 ```{r}
-ctrlSet <- MSet.raw[, colnames(MSet.raw) %in% ctrl]
-disSet <- MSet.raw[, colnames(MSet.raw) %in% dis]
+ctrlSet <- MSet.raw[, ctrl]
+disSet <- MSet.raw[, dis]
 ```
 
 Calculate Beta and M values
@@ -180,54 +251,52 @@ disM <- getM(disSet)
 Calculate mean values per probe across samples
 
 ```{r}
-mean_ctrlBeta <- apply(ctrlBeta, 1, mean, na.rm = TRUE)
-mean_disBeta <- apply(disBeta, 1, mean, na.rm = TRUE)
-mean_ctrlM <- apply(ctrlM, 1, mean, na.rm = TRUE)
-mean_disM <- apply(disM, 1, mean, na.rm = TRUE)
-```
-
-Calculate density estimates, checking for enough data points
-
-```{r}
-if (sum(!is.na(mean_ctrlBeta)) >= 2) {d_mean_ctrlBeta <- density(na.omit(mean_ctrlBeta))} else {warning("Not enough points in mean_ctrlBeta for density plot.")}
-
-if (sum(!is.na(mean_disBeta)) >= 2) {d_mean_disBeta <- density(na.omit(mean_disBeta))} else {warning("Not enough points in mean_disBeta for density plot.")}
-
-if (sum(!is.na(mean_ctrlM)) >= 2) {d_mean_ctrlM <- density(na.omit(mean_ctrlM))} else {warning("Not enough points in mean_ctrlM for density plot.")}
-
-if (sum(!is.na(mean_disM)) >= 2) {d_mean_disM <- density(na.omit(mean_disM))} else {warning("Not enough points in mean_disM for density plot.")}
+mean_ctrlBeta <- rowMeans(ctrlBeta, na.rm = TRUE)
+mean_disBeta <- rowMeans(disBeta, na.rm = TRUE)
+mean_ctrlM <- rowMeans(ctrlM, na.rm = TRUE)
+mean_disM <- rowMeans(disM, na.rm = TRUE)
 ```
 
 Plot density of mean Beta and M values
 
 ```{r}
 par(mfrow = c(1, 2))
+
+# Density of mean Beta values
+plot(density(mean_ctrlBeta, na.rm = TRUE),
+     main = "Density of Beta Values",
+     col = "#0067E6", lwd = 2.5,
+     xlab = "Mean Beta Values", ylab = "Density")
+lines(density(mean_disBeta, na.rm = TRUE), col = "#E50068", lwd = 2.5)
+legend("topright", legend = c("CTRL", "DIS"), col = c("#0067E6", "#E50068"), lwd = 2)
+
+# Density of mean M values
+plot(density(mean_ctrlM, na.rm = TRUE),
+     main = "Density of M Values",
+     col = "#0067E6", lwd = 2.5,
+     xlab = "Mean M Values", ylab = "Density")
+lines(density(mean_disM, na.rm = TRUE), col = "#E50068", lwd = 2.5)
+legend("topright", legend = c("CTRL", "DIS"), col = c("#0067E6", "#E50068"), lwd = 2)
 ```
+\
+Density of Beta values: The graph shows a bimodal distribution, that is to be expected for DNA methylation analysis. The first peak (β ~ 0.1) explains the proportion of unmethylated sites, while the peak on the right (β ~ 0.9) displays methylated sites.\
+\
+Density of M values: Bimodal symmetric distribution. The two peaks explain the proportion of unmethylated (M ~ -2) and methylated sites(M ~ +2).\
+\
+There are no clear differences between the control and disease group. This means that globally the methylation level distribution is the same, which is to be expected, as disease associated sites are localized in most cases.
 
-Density of mean Beta values
-
-```{r}
-plot(d_mean_ctrlBeta, main = "Density of Beta Values",col = "#0067E6",lwd = 2.5,xlab = "Mean Beta Values",ylab = "Density")
-lines(d_mean_disBeta, col = "#E50068", lwd = 2.5)
-legend("topright", legend = c("CTRL", "DIS"), fill = c("#0067E6", "#E50068"), cex = 1)
-```
-
-Density of mean M values
-
-```{r}
-plot(d_mean_ctrlM,main = "Density of M Values",col = "#0067E6",lwd = 2.5,xlab = "Mean M Values",ylab = "Density")
-lines(d_mean_disM, col = "#E50068", lwd = 2.5)
-legend("topright", legend = c("CTRL", "DIS"), fill = c("#0067E6", "#E50068"), cex = 1)
-```
-
+\
 Reset plotting layout
 
 ```{r}
 par(mfrow = c(1, 1))
 ```
+\
 
 **7. Normalize the data using the function assigned to each group and compare raw data and normalized data. Produce a plot with 6 panels in which, for both raw and normalized data, you show the density plots of beta mean values according to the chemistry of the probes, the density plot of beta standard deviation values according to the chemistry of the probes and the boxplot of beta values. Provide a short comment about the changes you observe.**\
 Optional: do you think that the normalization approach that you used is appropriate considering this specific dataset? Try to color the boxplots according to the group (WT and MUT) and check whether the distribution of methylation values is different between the two groups, before and after normalization.\
+\
+
 Subset the manifest by probe chemistry (Type I and Type II)
 
 ```{r}
@@ -237,7 +306,7 @@ dfI <- droplevels(dfI)
 dfII <- droplevels(dfII)
 ```
 
-Subset raw beta values by chemistry
+Subset raw Beta values by chemistry
 
 ```{r}
 beta_raw <- getBeta(MSet.raw)
@@ -248,24 +317,16 @@ beta_II_raw <- beta_raw[rownames(beta_raw) %in% dfII$IlmnID, ]
 Calculate mean and sd for raw Beta
 
 ```{r}
-mean_beta_I_raw <- apply(beta_I_raw, 1, mean, na.rm = TRUE)
-mean_beta_II_raw <- apply(beta_II_raw, 1, mean, na.rm = TRUE)
+mean_beta_I_raw <- rowMeans(beta_I_raw, na.rm = TRUE)
+mean_beta_II_raw <- rowMeans(beta_II_raw, na.rm = TRUE)
 sd_beta_I_raw <- apply(beta_I_raw, 1, sd, na.rm = TRUE)
 sd_beta_II_raw <- apply(beta_II_raw, 1, sd, na.rm = TRUE)
-```
-
-Density plots for raw Beta values
-
-```{r}
-density_mean_beta_I_raw <- density(na.omit(mean_beta_I_raw))
-density_mean_beta_II_raw <- density(na.omit(mean_beta_II_raw))
-density_sd_beta_I_raw <- density(na.omit(sd_beta_I_raw))
-density_sd_beta_II_raw <- density(na.omit(sd_beta_II_raw))
 ```
 
 Normalize using preprocessFunnorm
 
 ```{r, message=FALSE, warning=FALSE, results='hide'}
+BiocManager::install("IlluminaHumanMethylation450kanno.ilmn12.hg19")
 MSet.norm <- preprocessFunnorm(RGset)
 beta_norm <- getBeta(MSet.norm)
 ```
@@ -280,8 +341,8 @@ beta_II_norm <- beta_norm[rownames(beta_norm) %in% dfII$IlmnID, ]
 Calculate mean and sd for normalized Beta
 
 ```{r}
-mean_beta_I_norm <- apply(beta_I_norm, 1, mean, na.rm = TRUE)
-mean_beta_II_norm <- apply(beta_II_norm, 1, mean, na.rm = TRUE)
+mean_beta_I_norm <- rowMeans(beta_I_norm, na.rm = TRUE)
+mean_beta_II_norm <- rowMeans(beta_II_norm, na.rm = TRUE)
 sd_beta_I_norm <- apply(beta_I_norm, 1, sd, na.rm = TRUE)
 sd_beta_II_norm <- apply(beta_II_norm, 1, sd, na.rm = TRUE)
 ```
@@ -295,58 +356,55 @@ density_sd_beta_I_norm <- density(na.omit(sd_beta_I_norm))
 density_sd_beta_II_norm <- density(na.omit(sd_beta_II_norm))
 ```
 
+Prepare the colors for the groups 
+```{r}
+sample_prefixes <- sapply(strsplit(colnames(beta_raw), "_"), `[`, 1)
+group_colors <- ifelse(sample_prefixes %in% targets[targets$Group == "CTRL", "SampleID"], 
+                       "#0067E6", "#E50068")
+```
+
 Plotting: 2 rows x 3 columns
 
 ```{r}
 par(mfrow = c(2, 3))
+# RAW DATA (first row)
+# 1. Raw mean Beta densities
+plot(density(mean_beta_I_raw, na.rm = TRUE), main = "Raw Beta Mean", col = "blue", lwd = 2, xlab = "Mean Beta")
+lines(density(mean_beta_II_raw, na.rm = TRUE), col = "red", lwd = 2)
+legend("topright", legend = c("Type I", "Type II"), col = c("blue", "red"), lwd = 2)
+
+# 2. Raw sd Beta densities
+plot(density(sd_beta_I_raw, na.rm = TRUE), main = "Raw Beta SD", col = "blue", lwd = 2, xlab = "Beta SD")
+lines(density(sd_beta_II_raw, na.rm = TRUE), col = "red", lwd = 2)
+legend("topright", legend = c("Type I", "Type II"), col = c("blue", "red"), lwd = 2)
+
+# 3. Raw Beta boxplot (colored by group)
+boxplot(beta_raw, outline = FALSE, col = group_colors,
+        main = "Raw Beta Boxplot", ylab = "Beta Values", names = rep("", ncol(beta_raw)))
+legend("topright", legend = c("CTRL", "DIS"), fill = c("#0067E6", "#E50068"))
+
+# NORMALIZED DATA (second row)
+# 4. Normalized mean Beta densities
+plot(density(mean_beta_I_norm, na.rm = TRUE), main = "Norm. Beta Mean", col = "blue", lwd = 2, xlab = "Mean Beta")
+lines(density(mean_beta_II_norm, na.rm = TRUE), col = "red", lwd = 2)
+legend("topright", legend = c("Type I", "Type II"), col = c("blue", "red"), lwd = 2)
+
+# 5. Normalized sd Beta densities
+plot(density(sd_beta_I_norm, na.rm = TRUE), main = "Norm. Beta SD", col = "blue", lwd = 2, xlab = "Beta SD")
+lines(density(sd_beta_II_norm, na.rm = TRUE), col = "red", lwd = 2)
+legend("topright", legend = c("Type I", "Type II"), col = c("blue", "red"), lwd = 2)
+
+# 6. Normalized Beta boxplot (colored by group)
+boxplot(beta_norm, outline = FALSE, col = group_colors,
+        main = "Norm. Beta Boxplot", ylab = "Beta Values", names = rep("", ncol(beta_norm)))
+legend("topright", legend = c("CTRL", "DIS"), fill = c("#0067E6", "#E50068"))
 ```
+\
+The raw distributions of Beta mean and Beta standard deviation are clearly distinct between Type I and Type II probes. This can be explained by the chemistry implied in each probe type, which is different.\
+The functional normalization clearly reduced the variability between type I and type II probes, using control intensities to systematically correct data.\
+The box plot graph results are more uniform, while still preserving sample-specific variability.\
 
-Raw mean Beta densities
-
-```{r}
-plot(density_mean_beta_I_raw, main = "Raw Beta Mean (Type I)", col = "blue", lwd = 2, xlab = "Mean Beta")
-lines(density_mean_beta_II_raw, col = "red", lwd = 2)
-legend("topright", legend = c("Type I", "Type II"), fill = c("blue", "red"))
-```
-
-Raw sd Beta densities
-
-```{r}
-plot(density_sd_beta_I_raw, main = "Raw Beta SD (Type I)", col = "blue", lwd = 2, xlab = "Beta SD")
-lines(density_sd_beta_II_raw, col = "red", lwd = 2)
-legend("topright", legend = c("Type I", "Type II"), fill = c("blue", "red"))
-```
-
-Raw Beta boxplot
-
-```{r}
-boxplot(beta_raw, outline = FALSE,
-        col = rep(c("#0067E6", "#E50068"), length.out = ncol(beta_raw)),
-        main = "Raw Beta Boxplot", ylab = "Beta Values")
-```
-
-Normalized mean Beta densities
-
-```{r}
-plot(density_mean_beta_I_norm, main = "Norm. Beta Mean (Type I)", col = "blue", lwd = 2, xlab = "Mean Beta")
-lines(density_mean_beta_II_norm, col = "red", lwd = 2)
-legend("topright", legend = c("Type I", "Type II"), fill = c("blue", "red"))
-```
-
-Normalized sd Beta densities
-
-```{r}
-plot(density_sd_beta_I_norm, main = "Norm. Beta SD (Type I)", col = "blue", lwd = 2, xlab = "Beta SD")
-lines(density_sd_beta_II_norm, col = "red", lwd = 2)
-legend("topright", legend = c("Type I", "Type II"), fill = c("blue", "red"))
-```
-
-Normalized Beta boxplot
-
-```{r}
-boxplot(beta_norm, outline = FALSE,col = rep(c("#0067E6", "#E50068"), length.out = ncol(beta_norm)),main = "Norm. Beta Boxplot", ylab = "Beta Values")
-```
-
+\
 Reset plotting layout
 
 ```{r}
