@@ -50,7 +50,9 @@ Designed as both a scientific case study and an educational exercise, the reposi
 
 ### `/scripts/` — Main Pipeline & Report
 - `final_script.R`: Main R script executing the entire workflow.
-- `report_group4.html`: Auto-generated interactive HTML report summarizing results with plots and tables.
+- `DRD_project.html`: Auto-generated interactive HTML report summarizing results with plots and tables.
+- `DRD_project.Rmd`: R Markdown source file used to generate the `.html` report; contains all code chunks, text, and visualizations in a reproducible format.
+
 
 
 ### `/outputs/` — Results & Visualizations
