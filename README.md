@@ -101,7 +101,8 @@ Designed as both a scientific case study and an educational exercise, the reposi
 
 ## Workflow Summary
 
-image..
+![Data Import](https://github.com/user-attachments/assets/b2a8ca31-ca1f-413a-baed-f4d2e99f264e)
+
 
 ---
 
