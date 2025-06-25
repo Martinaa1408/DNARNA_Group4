@@ -97,9 +97,6 @@ Designed as both a scientific case study and an educational exercise, the reposi
 
 `DNAmethylation_analysis_manual.pdf`: Manual (LaTeX) including R usage guide, function descriptions, package references, and pipeline instructions.
 
-**Download processed RGset object**:  
-[RGset.RData](https://drive.google.com/uc?export=download&id=1eIU1pHnwIDmMTmn73Zu3RdZgdcb_ZFux)
-
 ---
 
 ## Workflow Summary
@@ -143,19 +140,40 @@ image..
   Bioconductor package for high-throughput filtering and statistical testing.
   [genefilter](https://bioconductor.riken.jp/packages/3.8/bioc/html/genefilter.html)
 
+- [**ggplot2**](https://ggplot2.tidyverse.org): Elegant Graphics for Data Analysis – H. Wickham (2016, Springer).  
+- [**ggpubr**](https://cran.r-project.org/package=ggpubr): Publication-Ready Plots Based on ggplot2 – A. Kassambara.  
+- [**cluster**](https://cran.r-project.org/package=cluster): Cluster Analysis Basics and Extensions – M. Maechler et al.  
+- [**FactoMineR**](https://bioconductor.org/packages/FactoMineR): Multivariate Exploratory Data Analysis – Lê, Josse & Husson (*JSS*, 2008).
+
+
 - **Illumina 450K Product Files**  
-  Official documentation and downloads: manifest files, annotation files, control probe info, and sample    sheets.  
+  Official documentation and downloads: manifest files, annotation files, control probe info, and sample sheets.  
   [support.illumina.com – Product Files](https://support.illumina.com/downloads/infinium_humanmethylation450_product_files.html)
 
 - **Infinium HumanMethylation450 BeadChip – Datasheet (PDF)**  
-  Technical summary of the 450K array platform, including probe design, detection chemistry, and assay      performance metrics.  
+  Technical summary of the 450K array platform, including probe design, detection chemistry, and assay performance metrics.  
   [Download Datasheet](https://www.illumina.com/content/dam/illumina-marketing/documents/products/datasheets/datasheet_humanmethylation450.pdf)
 
 - **`minfi::preprocessFunnorm()`**  
-  Official function documentation describing how to apply **functional normalization** to                   HumanMethylation arrays using internal control probes.  
+  Official function documentation describing how to apply **functional normalization** to HumanMethylation arrays using internal control probes.  
   Reduces unwanted technical variation while preserving biological signals.  
   [Function Reference](https://www.rdocumentation.org/packages/minfi/versions/1.18.4/topics/preprocessFunnorm)
 
+- **ggplot2**  
+  Grammar of graphics implementation for elegant and layered data visualization.  
+  [ggplot2 – tidyverse.org](https://ggplot2.tidyverse.org)
+
+- **ggpubr**  
+  Publication-ready plots built on top of `ggplot2`, with simplified syntax.  
+  [ggpubr – datanovia.com](https://rpkgs.datanovia.com/ggpubr/)
+
+- **cluster**  
+  Core clustering algorithms and validation methods for statistical computing.  
+  [cluster – CRAN](https://cran.r-project.org/package=cluster)
+
+- **FactoMineR**  
+  Multivariate exploratory data analysis including PCA, MCA, and CA.  
+  [FactoMineR – Bioconductor](https://bioconductor.org/packages/FactoMineR)
 
 ---
 
