@@ -140,12 +140,6 @@ image..
   Bioconductor package for high-throughput filtering and statistical testing.
   [genefilter](https://bioconductor.riken.jp/packages/3.8/bioc/html/genefilter.html)
 
-- [**ggplot2**](https://ggplot2.tidyverse.org): Elegant Graphics for Data Analysis – H. Wickham (2016, Springer).  
-- [**ggpubr**](https://cran.r-project.org/package=ggpubr): Publication-Ready Plots Based on ggplot2 – A. Kassambara.  
-- [**cluster**](https://cran.r-project.org/package=cluster): Cluster Analysis Basics and Extensions – M. Maechler et al.  
-- [**FactoMineR**](https://bioconductor.org/packages/FactoMineR): Multivariate Exploratory Data Analysis – Lê, Josse & Husson (*JSS*, 2008).
-
-
 - **Illumina 450K Product Files**  
   Official documentation and downloads: manifest files, annotation files, control probe info, and sample sheets.  
   [support.illumina.com – Product Files](https://support.illumina.com/downloads/infinium_humanmethylation450_product_files.html)
