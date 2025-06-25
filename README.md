@@ -112,7 +112,7 @@ image..
   Vignette: [BiocManager Vignette](https://cran.r-project.org/web/packages/BiocManager/vignettes/BiocManager.html)  
   Citation:  
   Shepherd L. (2024). *BiocManager: Access the Bioconductor Project Package Repository*. R package version 1.30.22.
-
+ 
 - **minfi**  
   Core package for analyzing Illumina 450K/EPIC methylation arrays. Includes preprocessing, QC, DMP analysis, and visualization tools.  
   Vignette: [minfi Vignette](https://bioconductor.org/packages/release/bioc/vignettes/minfi/inst/doc/minfi.html)  
