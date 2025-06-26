@@ -81,11 +81,7 @@ Designed as both a scientific case study and an educational exercise, the reposi
 - `Boxplot_corrections.png`: Comparison of raw and adjusted p-values (BH, Bonferroni).
 - `manhattan_plot.png`: Manhattan plot of –log₁₀ p-values across genomic positions.
 - `volcano_plot.png`: Volcano plot of ΔBeta vs –log₁₀ p-value (effect size vs significance).
-
-#### Fluorescence Tables
-- `Green_Fluorescences_Table.yaml`: Green channel intensities by sample.
-- `Red_Fluorescences_Table.yaml`: Red channel intensities by sample.
-
+  
 
 ### `/diagram_workflow/` — Workflow Overview
 - `workflow.png`: Diagram illustrating the main steps of the DNA methylation analysis pipeline, from raw data input to final output and visualization.
