@@ -49,11 +49,11 @@ Designed as both a scientific case study and an educational exercise, the reposi
 
 
 ### `/scripts/` — Main Pipeline & Report
-- `final_script.R`: Main R script executing the entire workflow.
-- `DRD_project.html`: Auto-generated interactive HTML report summarizing results with plots and tables.
-- `DRD_project.Rmd`: R Markdown source file used to generate the `.html` report; contains all code chunks, text, and visualizations in a reproducible format.
-
-
+- `DRD_project_script.R`: Standalone R script with the core analysis code, separated from the RMarkdown report. Useful for re-running the analysis or integrating it into other workflows.
+- `DRD_project_final.html`: HTML version of the report generated from the .Rmd file. Allows for interactive viewing in a web browser.
+- `DRD_project_final.Rmd`: RMarkdown source file containing the full project report, including code, results, and explanations. Can be compiled into HTML or PDF format.
+- `DRD_project_final.pdf`: PDF version of the final report. Useful for printing or sharing as a static document.
+  
 
 ### `/outputs/` — Results & Visualizations
 
