@@ -1,5 +1,12 @@
 # Group 4 – DNA Methylation Analysis Project
 
+[![R](https://img.shields.io/badge/R-276DC3?logo=r&logoColor=white)](https://www.r-project.org/)
+[![Illumina 450K](https://img.shields.io/badge/Illumina_Infinium_450K-FF6600?logo=dna&logoColor=white)](https://emea.illumina.com/techniques/microarrays/methylation-arrays.html)
+[![DNA Methylation](https://img.shields.io/badge/DNA_Methylation-800080?logo=helix&logoColor=white)](https://www.illumina.com/techniques/multiomics/epigenetics/dna-methylation-analysis.html)
+[![minfi](https://img.shields.io/badge/minfi-B200ED?logo=bioconductor&logoColor=white)](https://bioconductor.org/packages/release/bioc/html/minfi.html)
+[![funnorm](https://img.shields.io/badge/funnorm-4682B4?logo=bioconductor&logoColor=white)](https://bioconductor.org/packages/release/bioc/html/minfi.html#section-8)
+
+
 ## Table of Contents
 - [Project Overview](#project-overview)
 - [Assigned Parameters](#assigned-parameters)
